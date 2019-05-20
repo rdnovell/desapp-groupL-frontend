@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './service/auth.service';
 import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ProfileComponent } from './profile/profile.component';
     NavComponent,
     HomeComponent,
     ProfileComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
