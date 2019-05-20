@@ -1,0 +1,56 @@
+<div style="height: 80vh;">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-xs>
+                <mat-icon>menu</mat-icon>
+            </button>
+            <img src="https://www.neto.com.au/assets/themes/neto/images/branding/e-blue.png" height="42" width="42" routerLink="/home">
+            <span>Eventeando</span>
+
+            <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
+                <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+                    <li>
+                        <a *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
+                            <mat-icon class="icon">input</mat-icon>
+                            <span  class="label">Login</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a *ngIf="auth.isAuthenticated()" routerLink="/profile">
+                            <mat-icon class="icon">home</mat-icon>
+                            <span class="label">Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a *ngIf="auth.isAuthenticated()" (click)="auth.logout()" type="button">
+                            <mat-icon class="icon">input</mat-icon>
+                            <span class="label">LogOut</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-sidenav-container fxFlexFill>
+        <mat-sidenav #sidenav>
+            <mat-nav-list>
+                <a (click)="sidenav.toggle()" href="" mat-list-item>Cerrar</a>
+                <a mat-list-item *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
+                    <mat-icon class="icon">input</mat-icon>
+                    <span class="label">Login</span>
+                </a>
+                <a mat-list-item *ngIf="auth.isAuthenticated()" routerLink="/profile">
+                    <mat-icon class="icon">home</mat-icon>
+                    <span class="label">Profile</span>
+                </a>
+                <a  mat-list-item *ngIf="auth.isAuthenticated()" (click)="auth.logout()" type="button">
+                    <mat-icon class="icon">input</mat-icon>
+                    <span class="label">LogOut</span>
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill><router-outlet></router-outlet></mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
