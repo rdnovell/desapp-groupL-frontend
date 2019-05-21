@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './service/auth.service';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login';
+import { LoginActivate } from './service/login.activate';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { LoginComponent } from './login/login';
     FlexLayoutModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, LoginActivate ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

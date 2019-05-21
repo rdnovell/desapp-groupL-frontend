@@ -24,11 +24,12 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@fortawesome/angular-fontawesome": "^0.3.0",
+    "auth0-js": "^9.10.2",
+    "compression": "^1.7.4",
     "core-js": "^2.5.4",
+    "express": "~4.16.4",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "compression": "^1.7.4",
-    "express": "~4.16.4",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
