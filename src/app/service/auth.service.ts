@@ -15,7 +15,7 @@ export class AuthService {
         domain: 'dev-4av88gbm.auth0.com',
         responseType: 'token id_token',
         redirectUri: 'http://localhost:4200/',
-        scope: 'openid'
+        scope: 'openid profile email'
     });
 
     constructor(public router: Router) {
@@ -53,9 +53,7 @@ export class AuthService {
         this.idToken = '';
         this.expiresAt = 0;
 
-        this.auth0.logout({
-            returnTo: window.location.origin
-        });
+        this.router.navigate(['/']);
     }
 
     public isAuthenticated(): boolean {
