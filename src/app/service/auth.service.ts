@@ -14,7 +14,7 @@ export class AuthService {
         clientID: 'a7djieuPai3FOAURUz5QDbbeCCIUFdCz',
         domain: 'dev-4av88gbm.auth0.com',
         responseType: 'token id_token',
-        redirectUri: 'http://localhost:4200/',
+        redirectUri: 'https://eventeando-grupol.herokuapp.com/',
         scope: 'openid profile email'
     });
 
