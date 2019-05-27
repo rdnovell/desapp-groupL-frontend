@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import * as auth0 from 'auth0-js';
 
 @Injectable()
@@ -8,17 +9,21 @@ export class AuthService {
     private idToken: string;
     private accessToken: string;
     private expiresAt: number;
-    userProfile: any;
+    public userProfile: any;
 
     auth0 = new auth0.WebAuth({
         clientID: 'a7djieuPai3FOAURUz5QDbbeCCIUFdCz',
         domain: 'dev-4av88gbm.auth0.com',
         responseType: 'token id_token',
         redirectUri: 'https://eventeando-grupol.herokuapp.com/',
+        // redirectUri: 'http://localhost:4200/',
         scope: 'openid profile email'
     });
 
-    constructor(public router: Router) {
+    // private apiURL = 'http://localhost:8080/api/';
+    private apiURL = 'https://desapp-groupl-backend-testing.herokuapp.com/api/';
+
+    constructor(public router: Router, private http: HttpClient) {
         this.idToken = '';
         this.accessToken = '';
         this.expiresAt = 0;
@@ -37,9 +42,6 @@ export class AuthService {
                 this.accessToken = authResult.accessToken;
                 this.expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
                 this.router.navigate(['/profile']);
-
-                console.log(authResult);
-                this.getProfile();
             } else if (err) {
                 this.router.navigate(['/']);
                 console.log(err);
@@ -48,31 +50,32 @@ export class AuthService {
     }
 
     public logout(): void {
-        // Remove tokens and expiry time
         this.accessToken = '';
         this.idToken = '';
         this.expiresAt = 0;
-
         this.router.navigate(['/']);
     }
 
     public isAuthenticated(): boolean {
-        // Check whether the current time is past the
-        // access token's expiry time
         return this.accessToken && Date.now() < this.expiresAt;
     }
 
-    public getProfile(): void {
+    public getProfile(cb) {
         if (!this.accessToken) {
             throw new Error('Access Token must exist to fetch profile');
         }
 
+        const self = this;
         this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-            this.userProfile = profile;
-            console.log(profile);
-        }, (err) => {
-            console.log(err);
+            if (profile) {
+                self.userProfile = profile;
+            }
+            cb(err, profile);
         });
-
     }
+
+    getUserBalance(email: string) {
+            return this.http.get<number>(this.apiURL + 'user/balance/' + email);
+    }
+
 }

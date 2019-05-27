@@ -11,6 +11,8 @@ import { AuthService } from './service/auth.service';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login';
 import { LoginActivate } from './service/login.activate';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,10 @@ import { LoginActivate } from './service/login.activate';
     AppRoutingModule,
     MaterialModule,
     FlexLayoutModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [AuthService, LoginActivate ],
   bootstrap: [AppComponent]
