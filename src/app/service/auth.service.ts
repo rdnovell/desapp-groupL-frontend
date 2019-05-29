@@ -14,13 +14,13 @@ export class AuthService {
         clientID: 'a7djieuPai3FOAURUz5QDbbeCCIUFdCz',
         domain: 'dev-4av88gbm.auth0.com',
         responseType: 'token id_token',
-        // redirectUri: 'https://eventeando-grupol.herokuapp.com/',
-        redirectUri: 'http://localhost:4200/',
+        redirectUri: 'https://eventeando-grupol.herokuapp.com/',
+        // redirectUri: 'http://localhost:4200/',
         scope: 'openid profile email'
     });
 
-    // private apiURL = 'http://localhost:8080/api/';
-    private apiURL = 'https://desapp-groupl-backend-testing.herokuapp.com/api/';
+    private apiURL = 'http://localhost:8080/api/';
+    // private apiURL = 'https://desapp-groupl-backend-testing.herokuapp.com/api/';
 
     constructor(public router: Router, private http: HttpClient, private tokenStorage: TokenStorageService) {
         this.expiresAt = 0;
