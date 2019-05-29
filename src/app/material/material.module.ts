@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatToolbarModule, MatIconModule, MatListModule, MatSidenavModule, MatMenuModule, MatNativeDateModule } from '@angular/material';
-import { MatTabsModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule } from '@angular/material';
+import { MatTabsModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatCheckboxModule } from '@angular/material';
 import { MatCardModule, MatStepperModule, MatDatepickerModule, MatButtonModule, MatSelectModule } from '@angular/material';
 
 const modules = [
@@ -20,6 +20,7 @@ const modules = [
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
 ]
 
 @NgModule({
