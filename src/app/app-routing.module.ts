@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './profile/profile';
 import { LoginActivate } from './service/login.activate';
 
 const routes: Routes = [

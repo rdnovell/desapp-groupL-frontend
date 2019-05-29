@@ -8,11 +8,11 @@ import { MaterialModule } from './material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthService } from './service/auth.service';
-import { ProfileComponent } from './profile/profile.component';
-import { LoginComponent } from './login/login';
 import { LoginActivate } from './service/login.activate';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './profile/profile';
+import { ModalAddEventComponent } from './modals/add-event';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavComponent,
     HomeComponent,
     ProfileComponent,
-    LoginComponent,
+    ModalAddEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, LoginActivate ],
+  entryComponents: [],
+  providers: [AuthService, LoginActivate],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
