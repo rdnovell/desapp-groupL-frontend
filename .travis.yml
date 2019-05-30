@@ -7,7 +7,7 @@ branches:
   only:
   - master
 before_script:
-  - npm install -g @angular/cli
+  - yes | npm install -g @angular/cli
 script:
 - ng build --prod --base-href https://github.com/rdnovell/desapp-groupL-frontend
 
