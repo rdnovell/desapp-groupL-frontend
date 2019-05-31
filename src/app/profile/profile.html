@@ -1,63 +1,65 @@
 <mat-tab-group>
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">add</mat-icon>
-      <span translate>profile.firstTabContent.firstTabTitle</span>
-    </ng-template>
-    <app-add-event></app-add-event>
-  </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">add</mat-icon>
+            <span translate>profile.firstTabContent.firstTabTitle</span>
+        </ng-template>
+        <app-add-event></app-add-event>
+    </mat-tab>
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">list</mat-icon>
-      <span translate>profile.secondTabContent.secondTabTitle</span>
-    </ng-template>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">list</mat-icon>
+            <span translate>profile.secondTabContent.secondTabTitle</span>
+        </ng-template>
 
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
-    </mat-form-field>
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+        </mat-form-field>
 
-    <mat-table class="tableBorder" [dataSource]="dataSource" matSort>
+        <mat-table class="tableBorder" [dataSource]="dataSource" matSort>
 
-      <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Titulo </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
-      </ng-container>
+            <ng-container matColumnDef="title">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Titulo </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+            </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;">
-      </mat-row>
-    </mat-table>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
 
-    <mat-paginator [pageSizeOptions]="pageSize"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="pageSize"></mat-paginator>
 
-  </mat-tab>
+    </mat-tab>
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">list</mat-icon>
-      <span translate>profile.thirdTabContent.thirdTabTitle</span>
-    </ng-template>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">list</mat-icon>
+            <span translate>profile.thirdTabContent.thirdTabTitle</span>
+        </ng-template>
 
-    Content 3
-  </mat-tab>
+        Content 3
+    </mat-tab>
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">list</mat-icon>
-      <span translate>profile.fourthTabContent.fourthTabTitle</span>
-    </ng-template>
-    <div class="content">
-      <h2 translate>profile.fourthTabContent.personalData.title</h2>
-      <mat-list>
-        <mat-list-item>{{'profile.fourthTabContent.personalData.email' | translate}}: {{profile?.email}}</mat-list-item>
-        <mat-list-item>{{'profile.fourthTabContent.personalData.name' | translate}}: {{profile?.given_name}}</mat-list-item>
-        <mat-list-item>{{'profile.fourthTabContent.personalData.lastName' | translate}}: {{profile?.family_name}}</mat-list-item>
-      </mat-list>
-      <h2 translate>profile.fourthTabContent.personalAccount.title</h2>
-      <mat-list>
-        <mat-list-item>{{'profile.fourthTabContent.personalAccount.balanceInfo' | translate}}: ${{balance}}</mat-list-item>
-      </mat-list>
-    </div>
-  </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">list</mat-icon>
+            <span translate>profile.fourthTabContent.fourthTabTitle</span>
+        </ng-template>
+        <div class="content">
+            <h2 translate>profile.fourthTabContent.personalData.title</h2>
+            <mat-list>
+                <mat-list-item>{{'profile.fourthTabContent.personalData.email' | translate}}: {{profile?.email}}</mat-list-item>
+                <mat-list-item>{{'profile.fourthTabContent.personalData.name' | translate}}: {{profile?.given_name}}</mat-list-item>
+                <mat-list-item>{{'profile.fourthTabContent.personalData.lastName' | translate}}: {{profile?.family_name}}</mat-list-item>
+            </mat-list>
+            <h2 translate>profile.fourthTabContent.personalAccount.title</h2>
+            <mat-list>
+                <mat-list-item>{{'profile.fourthTabContent.personalAccount.balanceInfo' | translate}}: ${{balance}}</mat-list-item>
+                <mat-list-item><button mat-raised-button onClick="window.open('https://www.mercadopago.com/mla/checkout/start?pref_id=63521540-0b68af45-7347-4ae8-a029-1db1f3601099')">{{'profile.fourthTabContent.personalAccount.addMoneyButton' | translate}}</button></mat-list-item>
+                <mat-list-item><button mat-raised-button>{{'profile.fourthTabContent.personalAccount.getMoneyButton' | translate}}</button></mat-list-item>
+            </mat-list>
+        </div>
+    </mat-tab>
 </mat-tab-group>

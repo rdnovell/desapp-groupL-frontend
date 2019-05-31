@@ -1,13 +1,8 @@
 .example-card {
-    padding: 100px;
+    padding: 40px;
     max-width: 400px;
 }
 
 .example-header-image {
     background-size: cover;
-}
-
-#card-container {
-    display: flex;
-    flex-flow: row;
 }
