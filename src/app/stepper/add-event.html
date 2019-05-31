@@ -35,7 +35,7 @@
     <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>{{ 'profile.firstTabContent.stepTwo.title' | translate }}</ng-template>
-            <h4 translate>profile.firstTabContent.stepTwo.labelTypeEvent</h4>
+            <h4 translate>profile.firstTabContent.stepTwo.tableTitle</h4>
             <table mat-table [dataSource]="dataSourceItems" class="mat-elevation-z8">
 
                 <!-- Checkbox Column -->
@@ -64,13 +64,13 @@
                 </ng-container>
 
                 <ng-container matColumnDef="item">
-                    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                    <th mat-header-cell *matHeaderCellDef>{{'profile.firstTabContent.stepTwo.tableColumnName' | translate}}</th>
                     <td mat-cell *matCellDef="let element">{{element.item}}</td>
                     <td mat-footer-cell *matFooterCellDef></td>
                 </ng-container>
 
                 <ng-container matColumnDef="cost">
-                    <th mat-header-cell *matHeaderCellDef> Precio </th>
+                    <th mat-header-cell *matHeaderCellDef>{{'profile.firstTabContent.stepTwo.tableColumnCost' | translate}}</th>
                     <td mat-cell *matCellDef="let transaction"> {{transaction.cost | currency}} </td>
                     <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
                    </ng-container>
@@ -90,7 +90,7 @@
     <mat-step [stepControl]="thirdFormGroup">
         <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>{{ 'profile.firstTabContent.stepThree.title' | translate }}</ng-template>
-            <h4 translate>profile.firstTabContent.stepTwo.labelTypeEvent</h4>
+            <h4 translate>profile.firstTabContent.stepThree.tableTitle</h4>
             <table mat-table [dataSource]="dataSourceMails" class="mat-elevation-z8">
 
                 <ng-container matColumnDef="position">
@@ -100,7 +100,7 @@
                 </ng-container>
 
                 <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef>Email</th>
+                    <th mat-header-cell *matHeaderCellDef>{{'profile.fourthTabContent.personalData.email' | translate}}</th>
                     <td mat-cell *matCellDef="let row">{{row.email}}</td>
                     <td mat-footer-cell *matFooterCellDef></td>
                 </ng-container>
@@ -125,7 +125,7 @@
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>{{ 'profile.firstTabContent.stepFour.title' | translate }}</ng-template>
-        Tu evento ha sido creado.
+        <h4 translate>profile.firstTabContent.stepFour.label</h4>
         <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>

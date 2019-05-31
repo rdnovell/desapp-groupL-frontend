@@ -2,7 +2,7 @@
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">add</mat-icon>
-      <span translate>profile.firstTabTitle</span>
+      <span translate>profile.firstTabContent.firstTabTitle</span>
     </ng-template>
     <app-add-event></app-add-event>
   </mat-tab>
@@ -10,7 +10,7 @@
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">list</mat-icon>
-      <span translate>profile.secondTabTitle</span>
+      <span translate>profile.secondTabContent.secondTabTitle</span>
     </ng-template>
 
     <mat-form-field>
@@ -36,7 +36,7 @@
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">list</mat-icon>
-      <span translate>profile.thirdTabTitle</span>
+      <span translate>profile.thirdTabContent.thirdTabTitle</span>
     </ng-template>
 
     Content 3
@@ -45,18 +45,18 @@
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">list</mat-icon>
-      <span translate>profile.fourthTabTitle</span>
+      <span translate>profile.fourthTabContent.fourthTabTitle</span>
     </ng-template>
     <div class="content">
-      <h2>Datos personales</h2>
+      <h2 translate>profile.fourthTabContent.personalData.title</h2>
       <mat-list>
-        <mat-list-item>Email: {{profile?.email}}</mat-list-item>
-        <mat-list-item>Nombre: {{profile?.given_name}}</mat-list-item>
-        <mat-list-item>Apellido: {{profile?.family_name}}</mat-list-item>
+        <mat-list-item>{{'profile.fourthTabContent.personalData.email' | translate}}: {{profile?.email}}</mat-list-item>
+        <mat-list-item>{{'profile.fourthTabContent.personalData.name' | translate}}: {{profile?.given_name}}</mat-list-item>
+        <mat-list-item>{{'profile.fourthTabContent.personalData.lastName' | translate}}: {{profile?.family_name}}</mat-list-item>
       </mat-list>
-      <h2>Datos de la cuenta</h2>
+      <h2 translate>profile.fourthTabContent.personalAccount.title</h2>
       <mat-list>
-        <mat-list-item>Saldo de la cuenta: ${{balance}}</mat-list-item>
+        <mat-list-item>{{'profile.fourthTabContent.personalAccount.balanceInfo' | translate}}: ${{balance}}</mat-list-item>
       </mat-list>
     </div>
   </mat-tab>

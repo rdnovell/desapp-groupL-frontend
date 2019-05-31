@@ -1,4 +1,6 @@
 {
+	"profile.firstTabContent.firstTabTitle": "Crear evento",
+	"profile.firstTabContent.stepFour.label": "Tu evento ha sido creado",
 	"profile.firstTabContent.stepFour.title": "Fin",
 	"profile.firstTabContent.stepOne.inputDate": "Fecha del evento",
 	"profile.firstTabContent.stepOne.inputTitle": "Titulo del evento",
@@ -6,11 +8,19 @@
 	"profile.firstTabContent.stepOne.labelTypeEvent": "Elegi el tipo de evento",
 	"profile.firstTabContent.stepOne.selectorTypeEvent": "Tipo de evento",
 	"profile.firstTabContent.stepOne.title": "Datos",
+	"profile.firstTabContent.stepThree.tableTitle": "Agregar invitaciones",
 	"profile.firstTabContent.stepThree.title": "Invitaciones",
+	"profile.firstTabContent.stepTwo.tableColumnCost": "Precio",
+	"profile.firstTabContent.stepTwo.tableColumnName": "Nombre",
+	"profile.firstTabContent.stepTwo.tableTitle": "Elegi los elementos",
 	"profile.firstTabContent.stepTwo.title": "Elementos",
-	"profile.firstTabContent.stepTwo.labelTypeEvent": "Elegi los elementos",
-	"profile.firstTabTitle": "Crear evento",
-	"profile.fourthTabTitle": "Mis datos",
-	"profile.secondTabTitle": "Mis eventos",
-	"profile.thirdTabTitle": "Eventos populares"
+	"profile.fourthTabContent.fourthTabTitle": "Mis datos",
+	"profile.fourthTabContent.personalAccount.balanceInfo": "Saldo de la cuenta",
+	"profile.fourthTabContent.personalAccount.title": "Datos de la cuenta",
+	"profile.fourthTabContent.personalData.email": "Correo",
+	"profile.fourthTabContent.personalData.lastName": "Apellido",
+	"profile.fourthTabContent.personalData.name": "Nombre",
+	"profile.fourthTabContent.personalData.title": "Datos personales",
+	"profile.secondTabContent.secondTabTitle": "Mis eventos",
+	"profile.thirdTabContent.thirdTabTitle": "Eventos populares"
 }
