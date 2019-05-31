@@ -1,0 +1,19 @@
+<div class="modal-content modalBorder">
+    <div class="modal-header header">
+        <h4 class="modal-title" id="modal-basic-title">Eliminar invitado</h4>
+        <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="handleSubmit()">
+            <div class="form-group">
+                <label>¿Está seguro que desea eliminar el invitado {{mail.email}}?</label>
+            </div>
+
+            <div class="form-group">
+                <div class="text-right">
+                    <button mat-raised-button color="primary" class="siguiente">Eliminar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

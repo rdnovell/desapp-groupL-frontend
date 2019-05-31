@@ -12,9 +12,12 @@ import { LoginActivate } from './service/login.activate';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile';
-import { ModalAddEventComponent } from './modals/add-event';
+import { ModalAddEventComponent } from './stepper/add-event';
+import { ModalAddMailComponent } from './modals/add-mail';
+import { ModalDelMailComponent } from './modals/del-mail';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
     HomeComponent,
     ProfileComponent,
     ModalAddEventComponent,
+    ModalAddMailComponent,
+    ModalDelMailComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +38,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -41,7 +47,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
       }
     })
   ],
-  entryComponents: [],
+  entryComponents: [ModalAddMailComponent, ModalDelMailComponent],
   providers: [AuthService, LoginActivate],
   bootstrap: [AppComponent]
 })

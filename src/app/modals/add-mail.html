@@ -1,0 +1,22 @@
+<div class="modalBorder">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Agregar invitado</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+            <mat-form-field class="container">
+                <input matInput placeholder="Email" formControlName="email" />
+                <mat-error *ngIf="registerForm.controls.email.errors">{{getEmailErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <div class="form-group">
+                <button mat-raised-button color="primary" class="siguiente"
+                        [disabled]="!registerForm.valid">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>

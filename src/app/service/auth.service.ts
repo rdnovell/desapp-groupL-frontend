@@ -19,8 +19,8 @@ export class AuthService {
         scope: 'openid profile email'
     });
 
-    private apiURL = 'http://localhost:8080/api/';
-    // private apiURL = 'https://desapp-groupl-backend-testing.herokuapp.com/api/';
+    // private apiURL = 'http://localhost:8080/api/';
+    private apiURL = 'https://desapp-groupl-backend-testing.herokuapp.com/api/';
 
     constructor(public router: Router, private http: HttpClient, private tokenStorage: TokenStorageService) {
         this.expiresAt = 0;

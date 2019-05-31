@@ -1,5 +1,5 @@
 export class ItemModel {
-    position: number;
+    id: number;
     item: string;
     cost: number;
 }
