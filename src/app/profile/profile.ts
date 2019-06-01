@@ -16,7 +16,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   pageSize: number[] = [10, 20, 50];
   displayedColumns = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate'];
   dataSourceCreated: MatTableDataSource<EventModel>;
-  dataSourceGuest: MatTableDataSource<EventModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -28,10 +27,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     this.dataSourceCreated = new MatTableDataSource(ELEMENT_DATA);
     this.dataSourceCreated.paginator = this.paginator;
     this.dataSourceCreated.sort = this.sort;
-
-    this.dataSourceGuest = new MatTableDataSource(ELEMENT_DATA);
-    this.dataSourceGuest.paginator = this.paginator;
-    this.dataSourceGuest.sort = this.sort;
 
   }
 
@@ -46,28 +41,12 @@ export class ProfileComponent implements OnInit, AfterViewInit {
             this.balance = value;
           });
         });
-        this.dataService.getOwnerEvents(this.profile.email).subscribe(resp => {
-          console.log(resp);
-          this.dataSourceCreated.data = resp;
-        });
-        this.dataService.getGuestedEvents(this.profile.email).subscribe(resp => {
-          console.log(resp);
-          this.dataSourceGuest.data = resp;
-        });
       });
     }
-
-
   }
 
   ngAfterViewInit() {
     this.paginator._intl.itemsPerPageLabel = 'Cantidad de eventos por página:';
-  }
-
-  applyFilterGuest(filterValue: string) {
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
-    this.dataSourceGuest.filter = filterValue;
   }
 
   applyFilterCreated(filterValue: string) {

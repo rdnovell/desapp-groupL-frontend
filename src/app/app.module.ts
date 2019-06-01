@@ -19,6 +19,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from './service/data.service';
+import { MyEventsComponent } from './my-events/my-events';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DataService } from './service/data.service';
     NavComponent,
     HomeComponent,
     ProfileComponent,
+    MyEventsComponent,
     ModalAddEventComponent,
     ModalAddMailComponent,
     ModalDelMailComponent,
