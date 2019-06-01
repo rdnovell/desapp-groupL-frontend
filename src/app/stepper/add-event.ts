@@ -25,14 +25,7 @@ export class ModalAddEventComponent implements OnInit {
   displayedColumnsItems: string[] = ['select', 'title', 'price'];
   displayedColumnsMails: string[] = ['position', 'email', 'actions'];
 
-  items: ItemModel[] = [
-    {title: 'Cerveza', price: 50},
-    {title: 'Asado', price: 100},
-    {title: 'Pan', price: 30},
-    {title: 'Vino', price: 40},
-    {title: 'Carbon', price: 50},
-    {title: 'Coca cola', price: 80},
-  ];
+  items: ItemModel[] = [];
 
   eventTypeList: any = [
     {value: '0', viewValue: 'profile.firstTabContent.stepOne.selectorLabelOne'},
@@ -71,6 +64,10 @@ export class ModalAddEventComponent implements OnInit {
     this.thirdFormGroup = this.formBuilder.group({
       thirdCtrl: ['', Validators.required]
     });
+
+    this.dataService.getItems().subscribe(resp => {
+      this.dataSourceItems.data = resp;
+    });
   }
 
   private updateMails(mails) {
@@ -80,12 +77,6 @@ export class ModalAddEventComponent implements OnInit {
   }
 
   sendForm() {
-    console.log('imprimo los datos de los forms');
-    console.log('titulo del evento ' + this.firstFormGroup.value.title);
-    console.log(' codigo ' + this.firstFormGroup.value.type);
-    console.log('fecha del evento seleccionada ' + this.firstFormGroup.value.date);
-    console.log('items elegidos ' + this.dataSourceItems.data.filter(t => this.selection.isSelected(t)).map(item => item.title));
-    console.log('invitados ' + this.dataSourceMails.data.map(mail => mail.email));
     const data = {
     title: this.firstFormGroup.value.title,
     items: this.dataSourceItems.data.filter(t => this.selection.isSelected(t)).map(item => item.title),
@@ -95,7 +86,6 @@ export class ModalAddEventComponent implements OnInit {
     };
     switch (this.firstFormGroup.value.type) {
       case '0': {
-        console.log('entre al codigo 0');
         this.dataService.createParty(data).subscribe(resp => {console.log('llame al create party'); });
         break;
       }

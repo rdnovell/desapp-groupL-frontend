@@ -14,21 +14,25 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   profile: any;
   balance: number;
   pageSize: number[] = [10, 20, 50];
-  displayedColumns = ['id', 'title', 'items', 'invitados', 'date', 'expirationDate'];
-  dataSource: MatTableDataSource<EventModel>;
+  displayedColumns = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate'];
+  dataSourceCreated: MatTableDataSource<EventModel>;
+  dataSourceGuest: MatTableDataSource<EventModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private authService: AuthService, private dataService: DataService) {
 
-    const ELEMENT_DATA: EventModel[] = [
-      {id: 26, title: 'Asado', items: [], invs: [], date: '25/7/2019', expirationDate: '25/7/2019'}
-    ];
+    const ELEMENT_DATA: EventModel[] = [];
 
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.dataSourceCreated = new MatTableDataSource(ELEMENT_DATA);
+    this.dataSourceCreated.paginator = this.paginator;
+    this.dataSourceCreated.sort = this.sort;
+
+    this.dataSourceGuest = new MatTableDataSource(ELEMENT_DATA);
+    this.dataSourceGuest.paginator = this.paginator;
+    this.dataSourceGuest.sort = this.sort;
+
   }
 
   ngOnInit() {
@@ -42,18 +46,33 @@ export class ProfileComponent implements OnInit, AfterViewInit {
             this.balance = value;
           });
         });
+        this.dataService.getOwnerEvents(this.profile.email).subscribe(resp => {
+          console.log(resp);
+          this.dataSourceCreated.data = resp;
+        });
+        this.dataService.getGuestedEvents(this.profile.email).subscribe(resp => {
+          console.log(resp);
+          this.dataSourceGuest.data = resp;
+        });
       });
     }
+
+
   }
 
   ngAfterViewInit() {
     this.paginator._intl.itemsPerPageLabel = 'Cantidad de eventos por página:';
   }
 
-  applyFilter(filterValue: string) {
+  applyFilterGuest(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
+    this.dataSourceGuest.filter = filterValue;
   }
 
+  applyFilterCreated(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSourceCreated.filter = filterValue;
+  }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { AuthService } from './auth.service';
+import {ItemModel} from '../model/item';
 
 @Injectable()
 export class DataService {
@@ -11,23 +12,35 @@ export class DataService {
     constructor(private http: HttpClient, private authService: AuthService) {}
 
     validateUser({email, given_name, family_name}) {
-        console.log('desaerealizcin');
-        console.log(email);
-        console.log(given_name);
-        console.log(family_name);
-        console.log('lanzo el validar prfile');
         return this.http.post<any>(this.apiURL + 'user', {name: given_name, lastName: family_name, email});
     }
 
     createParty({title, items, invs, date, expirationDate}) {
-        console.log('entre al create partty');
-        console.log('Los datos ');
-        console.log(title);
-        console.log(items);
-        console.log(invs);
-        console.log(date);
-        console.log(expirationDate);
-        console.log(this.authService.userProfile.email);
-        return this.http.post<any>(this.apiURL + 'event/party', {title, owner: this.authService.userProfile.email, items, guests: invs, date, expirationDate});
+        const body = {title, owner: this.authService.userProfile.email, items, guests: invs, date, expirationDate};
+        return this.http.post<any>(this.apiURL + 'event/party', body);
+    }
+
+    getItems() {
+        return this.http.get<ItemModel[]>(this.apiURL + 'items');
+    }
+
+    getGuestedEvents(email: string) {
+        let params = new HttpParams();
+        params = params.set('email', email);
+        return this.http.get<any>(this.apiURL + 'user/guest-events', {params});
+    }
+
+    getOwnerEvents(email: string) {
+        let params = new HttpParams();
+        params = params.set('email', email);
+        return this.http.get<any>(this.apiURL + 'user/owner-events', {params});
+    }
+
+    assistToAnEvent(userEventData: any) {
+        return this.http.put(this.apiURL + 'event/guest-confirmated', userEventData);
+    }
+
+    crearItem(item: ItemModel) {
+        return this.http.post(this.apiURL + 'items', item);
     }
 }
