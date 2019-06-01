@@ -1,4 +1,7 @@
 {
+	"profile.fifthTabContent.createLoan": "Apply for loan",
+	"profile.fifthTabContent.fifthTabTitle": "Financial services",
+	"profile.fifthTabContent.myLoans": "My loans",
 	"profile.firstTabContent.firstTabTitle": "Create event",
 	"profile.firstTabContent.stepFour.label": "Your event has been created",
 	"profile.firstTabContent.stepFour.title": "End",
@@ -6,6 +9,9 @@
 	"profile.firstTabContent.stepOne.inputTitle": "Event title",
 	"profile.firstTabContent.stepOne.labelEventData": "Complete data for your event",
 	"profile.firstTabContent.stepOne.labelTypeEvent": "To choose a type of event.",
+	"profile.firstTabContent.stepOne.selectorLabelOne": "Party",
+	"profile.firstTabContent.stepOne.selectorLabelThree": "Crowdfunding",
+	"profile.firstTabContent.stepOne.selectorLabelTwo": "Basquet",
 	"profile.firstTabContent.stepOne.selectorTypeEvent": "Event type",
 	"profile.firstTabContent.stepOne.title": "Data",
 	"profile.firstTabContent.stepThree.tableTitle": "Add invitations",
@@ -23,6 +29,9 @@
 	"profile.fourthTabContent.personalData.lastName": "Last name",
 	"profile.fourthTabContent.personalData.name": "Name",
 	"profile.fourthTabContent.personalData.title": "Personal data",
+	"profile.secondTabContent.confirmedEvents": "Confirmed Events",
+	"profile.secondTabContent.createdEvents": "Owner events",
+	"profile.secondTabContent.guestEvents": "Guest Events",
 	"profile.secondTabContent.secondTabTitle": "My events",
 	"profile.thirdTabContent.thirdTabTitle": "Top events"
 }

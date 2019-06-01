@@ -10,9 +10,7 @@ export class AppComponent {
   title = 'desapp-groupL-frontend';
 
   constructor(private translate: TranslateService) {
-    console.log('Veo cual es el idioma');
-    console.log(translate.getBrowserLang());
-    translate.setDefaultLang('en');
+    translate.setDefaultLang(translate.getBrowserLang());
 
   }
 }

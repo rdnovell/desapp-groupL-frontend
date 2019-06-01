@@ -6,7 +6,8 @@ import { MatTableDataSource } from '@angular/material';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAddMailComponent, modalAddMailEvent } from '../modals/add-mail';
 import { MailModel } from '../model/mail';
-import {ModalDelMailComponent , modalDelMailEvent} from '../modals/del-mail';
+import { ModalDelMailComponent , modalDelMailEvent } from '../modals/del-mail';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-add-event',
@@ -21,22 +22,22 @@ export class ModalAddEventComponent implements OnInit {
   thirdFormGroup: FormGroup;
   mails: MailModel[] = [{position: 1, email: 'juan@gmail.com'}];
   mailCounter = 1;
-  displayedColumnsItems: string[] = ['select', 'id', 'item', 'cost'];
+  displayedColumnsItems: string[] = ['select', 'title', 'price'];
   displayedColumnsMails: string[] = ['position', 'email', 'actions'];
 
   items: ItemModel[] = [
-    {id: 1, item: 'Cerveza', cost: 50},
-    {id: 2, item: 'Asado', cost: 100},
-    {id: 3, item: 'Pan', cost: 30},
-    {id: 4, item: 'Vino', cost: 40},
-    {id: 5, item: 'Carbon', cost: 50},
-    {id: 6, item: 'Coca cola', cost: 80},
+    {title: 'Cerveza', price: 50},
+    {title: 'Asado', price: 100},
+    {title: 'Pan', price: 30},
+    {title: 'Vino', price: 40},
+    {title: 'Carbon', price: 50},
+    {title: 'Coca cola', price: 80},
   ];
 
   eventTypeList: any = [
-    {value: '0', viewValue: 'Fiesta'},
-    {value: '1', viewValue: 'Canasta'},
-    {value: '2', viewValue: 'Vaquita'}
+    {value: '0', viewValue: 'profile.firstTabContent.stepOne.selectorLabelOne'},
+    {value: '1', viewValue: 'profile.firstTabContent.stepOne.selectorLabelTwo'},
+    {value: '2', viewValue: 'profile.firstTabContent.stepOne.selectorLabelThree'}
   ];
 
 
@@ -44,7 +45,7 @@ export class ModalAddEventComponent implements OnInit {
   dataSourceItems = new MatTableDataSource<ItemModel>(this.items);
   selection = new SelectionModel<ItemModel>(true, []);
 
-  constructor(private formBuilder: FormBuilder, private modalService: NgbModal) {
+  constructor(private formBuilder: FormBuilder, private modalService: NgbModal, private dataService: DataService) {
     modalAddMailEvent.on('addMail', mail => {
       this.mailCounter = this.mailCounter + 1;
       this.mails.push({position: this.mailCounter, email: mail});
@@ -81,10 +82,32 @@ export class ModalAddEventComponent implements OnInit {
   sendForm() {
     console.log('imprimo los datos de los forms');
     console.log('titulo del evento ' + this.firstFormGroup.value.title);
-    console.log('tipo de evento seleccionado ' + this.eventTypeList[this.firstFormGroup.value.type].viewValue + ' codigo ' + this.firstFormGroup.value.type);
+    console.log(' codigo ' + this.firstFormGroup.value.type);
     console.log('fecha del evento seleccionada ' + this.firstFormGroup.value.date);
-    console.log('items elegidos ' + this.dataSourceItems.data.filter(t => this.selection.isSelected(t)).map(item => item.item));
+    console.log('items elegidos ' + this.dataSourceItems.data.filter(t => this.selection.isSelected(t)).map(item => item.title));
     console.log('invitados ' + this.dataSourceMails.data.map(mail => mail.email));
+    const data = {
+    title: this.firstFormGroup.value.title,
+    items: this.dataSourceItems.data.filter(t => this.selection.isSelected(t)).map(item => item.title),
+    invs: this.dataSourceMails.data.map(mail => mail.email),
+    date: this.firstFormGroup.value.date,
+    expirationDate: this.firstFormGroup.value.date
+    };
+    switch (this.firstFormGroup.value.type) {
+      case '0': {
+        console.log('entre al codigo 0');
+        this.dataService.createParty(data).subscribe(resp => {console.log('llame al create party'); });
+        break;
+      }
+      case '1': {
+        this.dataService.createParty(data);
+        break;
+      }
+      case '2': {
+        this.dataService.createParty(data);
+        break;
+      }
+    }
   }
 
   isAllSelected() {
@@ -103,14 +126,14 @@ export class ModalAddEventComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.title}`;
   }
 
   getTotalMails() {
     return this.dataSourceMails.data.length;
   }
   getTotalCost() {
-    return this.dataSourceItems.data.filter(t => this.selection.isSelected(t)).map(t => t.cost).reduce((acc, value) => acc + value, 0);
+    return this.dataSourceItems.data.filter(t => this.selection.isSelected(t)).map(t => t.price).reduce((acc, value) => acc + value, 0);
   }
 
   addMail() {

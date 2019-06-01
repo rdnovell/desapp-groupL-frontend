@@ -1,4 +1,7 @@
 {
+	"profile.fifthTabContent.createLoan": "Solicitar prestamo",
+	"profile.fifthTabContent.fifthTabTitle": "Servicios financieros",
+	"profile.fifthTabContent.myLoans": "Mis prestamos",
 	"profile.firstTabContent.firstTabTitle": "Crear evento",
 	"profile.firstTabContent.stepFour.label": "Tu evento ha sido creado",
 	"profile.firstTabContent.stepFour.title": "Fin",
@@ -6,6 +9,9 @@
 	"profile.firstTabContent.stepOne.inputTitle": "Titulo del evento",
 	"profile.firstTabContent.stepOne.labelEventData": "Completa los datos para tu evento",
 	"profile.firstTabContent.stepOne.labelTypeEvent": "Elegi el tipo de evento",
+	"profile.firstTabContent.stepOne.selectorLabelOne": "Fiesta",
+	"profile.firstTabContent.stepOne.selectorLabelThree": "Vaquita",
+	"profile.firstTabContent.stepOne.selectorLabelTwo": "Canasta",
 	"profile.firstTabContent.stepOne.selectorTypeEvent": "Tipo de evento",
 	"profile.firstTabContent.stepOne.title": "Datos",
 	"profile.firstTabContent.stepThree.tableTitle": "Agregar invitaciones",
@@ -23,6 +29,9 @@
 	"profile.fourthTabContent.personalData.lastName": "Apellido",
 	"profile.fourthTabContent.personalData.name": "Nombre",
 	"profile.fourthTabContent.personalData.title": "Datos personales",
+	"profile.secondTabContent.confirmedEvents": "Eventos Confirmados",
+	"profile.secondTabContent.createdEvents": "Mis eventos",
+	"profile.secondTabContent.guestEvents": "Eventos Invitado",
 	"profile.secondTabContent.secondTabTitle": "Mis eventos",
 	"profile.thirdTabContent.thirdTabTitle": "Eventos populares"
 }

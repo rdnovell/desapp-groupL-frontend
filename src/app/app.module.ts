@@ -18,6 +18,7 @@ import { ModalDelMailComponent } from './modals/del-mail';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from './service/data.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     })
   ],
   entryComponents: [ModalAddMailComponent, ModalDelMailComponent],
-  providers: [AuthService, LoginActivate],
+  providers: [AuthService, DataService, LoginActivate],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

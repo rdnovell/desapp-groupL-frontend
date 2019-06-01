@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { EventModel } from '../model/event';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,25 +14,16 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   profile: any;
   balance: number;
   pageSize: number[] = [10, 20, 50];
-  displayedColumns = ['title'];
+  displayedColumns = ['id', 'title', 'items', 'invitados', 'date', 'expirationDate'];
   dataSource: MatTableDataSource<EventModel>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private authService: AuthService, private modalService: NgbModal) {
+  constructor(private authService: AuthService, private dataService: DataService) {
 
     const ELEMENT_DATA: EventModel[] = [
-      {title: 'Hydrogen'},
-      {title: 'Helium'},
-      {title: 'Lithium'},
-      {title: 'Beryllium'},
-      {title: 'Boron'},
-      {title: 'Carbon'},
-      {title: 'Nitrogen'},
-      {title: 'Oxygen'},
-      {title: 'Fluorine'},
-      {title: 'Neon'},
+      {id: 26, title: 'Asado', items: [], invs: [], date: '25/7/2019', expirationDate: '25/7/2019'}
     ];
 
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -46,7 +37,11 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     } else {
       this.authService.getProfile((err, profile) => {
         this.profile = profile;
-        this.authService.getUserBalance(this.profile.email).subscribe(value => {this.balance = value; });
+        this.dataService.validateUser(this.profile).subscribe(data => {
+          this.authService.getUserBalance(this.profile.email).subscribe(value => {
+            this.balance = value;
+          });
+        });
       });
     }
   }
