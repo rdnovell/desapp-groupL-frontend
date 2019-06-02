@@ -16,7 +16,7 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     profile: any;
     pageSize: number[] = [10, 20, 50];
     displayedColumns = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate', 'actions'];
-    displayedColumnsGuest = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate'];
+    displayedColumnsGuest = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate', 'actions'];
     dataSourceCreated: MatTableDataSource<EventModel>;
     dataSourceGuest: MatTableDataSource<EventModel>;
 
@@ -70,6 +70,9 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
 
     delEvent(row: any) {
         console.log('hay que borrar el evento con id ' + row.id);
+        // esto no va
+        this.dataSourceCreated.data = this.dataSourceCreated.data.filter(e => e.id !== row.id);
+        // esto no va
         this.dataService.delEvent(row.id).subscribe(resp => {
             console.log('hay que actualizr mis evebntos owners ' );
             this.dataService.getOwnerEvents(this.profile.email).subscribe(data => {

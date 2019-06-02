@@ -89,6 +89,12 @@
                 <mat-cell *matCellDef="let row"> {{row.expirationDate}} </mat-cell>
             </ng-container>
 
+            <!-- botones -->
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row"><button mat-raised-button>Asistir</button></mat-cell>>
+            </ng-container>
+
             <mat-header-row *matHeaderRowDef="displayedColumnsGuest"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumnsGuest;"></mat-row>
         </mat-table>
