@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from './service/data.service';
 import { MyEventsComponent } from './my-events/my-events';
 import { ModalAddItemComponent } from './modals/add-item';
+import { ModalEventItemsComponent } from './modals/event-items';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ModalAddItemComponent } from './modals/add-item';
     ModalAddMailComponent,
     ModalDelMailComponent,
     ModalAddItemComponent,
+    ModalEventItemsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { ModalAddItemComponent } from './modals/add-item';
       }
     })
   ],
-  entryComponents: [ModalAddMailComponent, ModalDelMailComponent, ModalAddItemComponent],
+  entryComponents: [ModalAddMailComponent, ModalDelMailComponent, ModalAddItemComponent, ModalEventItemsComponent],
   providers: [AuthService, DataService, LoginActivate],
   bootstrap: [AppComponent]
 })

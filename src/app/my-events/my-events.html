@@ -19,12 +19,12 @@
 
             <ng-container matColumnDef="items">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Items </mat-header-cell>
-                <mat-cell *matCellDef="let row"><button mat-raised-button>Ver items</button></mat-cell>
+                <mat-cell *matCellDef="let row"><button mat-raised-button (click)="checkItems(row)">Ver items</button></mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="invitados">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center"> Invitados </mat-header-cell>
-                <mat-cell *matCellDef="let row"><button mat-raised-button>Ver invitados</button></mat-cell>
+                <mat-cell *matCellDef="let row"><button mat-raised-button (click)="checkGuest(row)">Ver invitados</button></mat-cell>
             </ng-container>
 
 
@@ -38,9 +38,14 @@
                 <mat-cell *matCellDef="let row"> {{row.expirationDate}} </mat-cell>
             </ng-container>
 
+            <!-- botones -->
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row"><button mat-icon-button color="warn" (click)="delEvent(row)"><mat-icon aria-label="Delete">delete</mat-icon></button></mat-cell>>
+            </ng-container>
+
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;">
-            </mat-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
 
         <mat-paginator [pageSizeOptions]="pageSize"></mat-paginator>
@@ -84,9 +89,8 @@
                 <mat-cell *matCellDef="let row"> {{row.expirationDate}} </mat-cell>
             </ng-container>
 
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;">
-            </mat-row>
+            <mat-header-row *matHeaderRowDef="displayedColumnsGuest"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumnsGuest;"></mat-row>
         </mat-table>
 
         <mat-paginator [pageSizeOptions]="pageSize"></mat-paginator>

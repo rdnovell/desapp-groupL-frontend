@@ -43,4 +43,9 @@ export class DataService {
     crearItem(item: ItemModel) {
         return this.http.post(this.apiURL + 'items', item);
     }
+
+    delEvent(id: any) {
+        // arreglar
+        return this.http.delete(this.apiURL + id);
+    }
 }

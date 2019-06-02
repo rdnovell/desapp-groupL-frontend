@@ -1,0 +1,28 @@
+<div class="modal-content modalBorder">
+    <div class="modal-header header">
+        <h4 class="modal-title" id="modal-basic-title">Verificar items</h4>
+        <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
+    </div>
+    <div class="modal-body">
+        <table mat-table [dataSource]="dataSourceItems" class="mat-elevation-z8">
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>{{'profile.firstTabContent.stepTwo.tableColumnName' | translate}}</th>
+                <td mat-cell *matCellDef="let element">{{element.title}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>{{'profile.firstTabContent.stepTwo.tableColumnCost' | translate}}</th>
+                <td mat-cell *matCellDef="let element"> {{element.price | currency}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsItems"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsItems;"></tr>
+
+            <!-- botones -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef><button mat-icon-button color="primary" (click)="addItem()"><mat-icon>add</mat-icon></button></th>
+                <td mat-cell *matCellDef="let row"><button mat-icon-button color="warn" (click)="delItem(row)"><mat-icon aria-label="Delete">delete</mat-icon></button></td>
+            </ng-container>
+        </table>
+    </div>
+</div>
