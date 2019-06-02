@@ -20,6 +20,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from './service/data.service';
 import { MyEventsComponent } from './my-events/my-events';
+import { ModalAddItemComponent } from './modals/add-item';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MyEventsComponent } from './my-events/my-events';
     ModalAddEventComponent,
     ModalAddMailComponent,
     ModalDelMailComponent,
+    ModalAddItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import { MyEventsComponent } from './my-events/my-events';
       }
     })
   ],
-  entryComponents: [ModalAddMailComponent, ModalDelMailComponent],
+  entryComponents: [ModalAddMailComponent, ModalDelMailComponent, ModalAddItemComponent],
   providers: [AuthService, DataService, LoginActivate],
   bootstrap: [AppComponent]
 })

@@ -8,6 +8,7 @@ import { ModalAddMailComponent, modalAddMailEvent } from '../modals/add-mail';
 import { MailModel } from '../model/mail';
 import { ModalDelMailComponent , modalDelMailEvent } from '../modals/del-mail';
 import { DataService } from '../service/data.service';
+import { ModalAddItemComponent, modalAddItem } from '../modals/add-item';
 
 @Component({
   selector: 'app-add-event',
@@ -22,7 +23,7 @@ export class ModalAddEventComponent implements OnInit {
   thirdFormGroup: FormGroup;
   mails: MailModel[] = [{position: 1, email: 'juan@gmail.com'}];
   mailCounter = 1;
-  displayedColumnsItems: string[] = ['select', 'title', 'price'];
+  displayedColumnsItems: string[] = ['select', 'title', 'price', 'actions'];
   displayedColumnsMails: string[] = ['position', 'email', 'actions'];
 
   items: ItemModel[] = [];
@@ -49,6 +50,13 @@ export class ModalAddEventComponent implements OnInit {
       this.mailCounter = this.mailCounter - 1;
       this.mails = this.mails.filter(email => email.position !== mail.position);
       this.updateMails(this.mails);
+    });
+
+    modalAddItem.on('addItem', () => {
+      console.log('llamo al event emitter del item ');
+      this.dataService.getItems().subscribe(resp => {
+        this.dataSourceItems.data = resp;
+      });
     });
   }
 
@@ -134,6 +142,10 @@ export class ModalAddEventComponent implements OnInit {
     const modalRef = this.modalService.open(ModalDelMailComponent, { backdrop: 'static', keyboard: false, centered: true });
     modalRef.componentInstance.mail = row;
 
+  }
+
+  addItem() {
+    this.modalService.open(ModalAddItemComponent, { backdrop: 'static', keyboard: false, centered: true });
   }
 }
 
