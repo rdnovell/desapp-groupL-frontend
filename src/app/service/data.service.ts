@@ -57,4 +57,8 @@ export class DataService {
     updateItemsToEvent(data: {eventId, itemsTitle}) {
         return this.http.put(this.apiURL + 'event/party/items', data);
     }
+
+    getTopEvents() {
+        return this.http.get<any>(this.apiURL + 'event/top-events');
+    }
 }

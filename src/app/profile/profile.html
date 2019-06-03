@@ -20,49 +20,7 @@
             <mat-icon class="example-tab-icon">list</mat-icon>
             <span translate>profile.thirdTabContent.thirdTabTitle</span>
         </ng-template>
-        <mat-form-field>
-            <input matInput (keyup)="applyFilterCreated($event.target.value)" placeholder="{{'profile.secondTabContent.tableSearchLabel' | translate}}">
-        </mat-form-field>
-
-        <mat-table class="tableBorder" [dataSource]="dataSourceCreated" matSort>
-
-            <ng-container matColumnDef="type">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center">{{'profile.secondTabContent.tableColumnType' | translate}}</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.type}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="title">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center">{{'profile.secondTabContent.tableColumnTitle' | translate}}</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="items">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center">{{'profile.secondTabContent.tableColumnItems' | translate}}</mat-header-cell>
-                <mat-cell *matCellDef="let row"><button mat-raised-button>{{'profile.secondTabContent.checkItemsButton' | translate}}</button></mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="invitados">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center">{{'profile.secondTabContent.tableColumnGuests' | translate}}</mat-header-cell>
-                <mat-cell *matCellDef="let row"><button mat-raised-button>{{'profile.secondTabContent.checkGuestButton' | translate}}</button></mat-cell>
-            </ng-container>
-
-
-            <ng-container matColumnDef="date">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center">{{'profile.secondTabContent.tableColumnDate' | translate}}</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.date}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="expirationDate">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="textBlack center">{{'profile.secondTabContent.tableColumnDateExp' | translate}}</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.expirationDate}} </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;">
-            </mat-row>
-        </mat-table>
-
-        <mat-paginator [pageSizeOptions]="pageSize"></mat-paginator>
+        <app-top-events></app-top-events>
     </mat-tab>
 
     <mat-tab>
