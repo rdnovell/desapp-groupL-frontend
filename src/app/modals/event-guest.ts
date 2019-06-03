@@ -23,7 +23,6 @@ export class ModalEventGuestComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log(this.guests);
         this.dataSourceGuests.data = this.guests;
     }
 

@@ -38,6 +38,7 @@
 	"profile.secondTabContent.checkItemsButton": "Ver elementos",
 	"profile.secondTabContent.confirmedEvents": "Eventos Confirmados",
 	"profile.secondTabContent.createdEvents": "Mis eventos",
+	"profile.secondTabContent.editGuestLabel": "Modificar invitados",
 	"profile.secondTabContent.editItemsLabel": "Modificar elementos",
 	"profile.secondTabContent.guestEvents": "Eventos Invitado",
 	"profile.secondTabContent.paginatorLabel": "Cantidad de eventos por página:",
