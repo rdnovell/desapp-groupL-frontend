@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatToolbarModule, MatIconModule, MatListModule, MatSidenavModule, MatMenuModule, MatNativeDateModule } from '@angular/material';
 import { MatTabsModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatCheckboxModule } from '@angular/material';
-import { MatCardModule, MatStepperModule, MatDatepickerModule, MatButtonModule, MatSelectModule } from '@angular/material';
+import { MatCardModule, MatStepperModule, MatDatepickerModule, MatButtonModule, MatSelectModule, MatSortModule } from '@angular/material';
 
 const modules = [
     MatSidenavModule,
@@ -21,6 +21,7 @@ const modules = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatSortModule,
 ]
 
 @NgModule({

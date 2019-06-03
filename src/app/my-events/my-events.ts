@@ -51,6 +51,9 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        this.dataSourceCreated.sort = this.sort;
+        this.dataSourceGuest.sort = this.sort;
+        this.dataSourceAssisted.sort = this.sort;
         if (this.authService.userProfile) {
             this.profile = this.authService.userProfile;
         } else {
