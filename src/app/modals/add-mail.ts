@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventEmitter } from 'events';
+import { DataService } from '../service/data.service';
 
 const modalAddMailEvent = new EventEmitter();
+const modalChangeEventEmail = new EventEmitter();
 
 @Component({
     selector: 'app-add-mail',
@@ -13,9 +15,11 @@ const modalAddMailEvent = new EventEmitter();
 
 class ModalAddMailComponent implements OnInit {
 
+    @Input() public eventId;
+    @Input() public eventGuest;
     registerForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, public modalService: NgbModal) {
+    constructor(private formBuilder: FormBuilder, public modalService: NgbModal, private dataService: DataService) {
     }
 
     ngOnInit(): void {
@@ -25,7 +29,15 @@ class ModalAddMailComponent implements OnInit {
     }
 
     handleSubmit() {
-        modalAddMailEvent.emit('addMail', this.registerForm.controls.email.value);
+        if (this.eventId) {
+            this.eventGuest.push(this.registerForm.controls.email.value);
+            const data = {eventId: this.eventId, userEmails: this.eventGuest};
+            this.dataService.updateGuestToEvent(data).subscribe(resp => {
+                modalChangeEventEmail.emit('changeEvents');
+            });
+        } else {
+            modalAddMailEvent.emit('addMail', this.registerForm.controls.email.value);
+        }
         this.modalService.dismissAll('close');
     }
 
@@ -34,4 +46,4 @@ class ModalAddMailComponent implements OnInit {
     }
 }
 
-export { ModalAddMailComponent, modalAddMailEvent };
+export { ModalAddMailComponent, modalAddMailEvent, modalChangeEventEmail };

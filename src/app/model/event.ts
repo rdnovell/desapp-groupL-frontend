@@ -6,7 +6,7 @@ export class EventModel {
     title: string;
     owner: string;
     items: ItemModel[];
-    invs: ItemModel[];
+    guests: string[];
     date: string;
     expirationDate: string;
 }

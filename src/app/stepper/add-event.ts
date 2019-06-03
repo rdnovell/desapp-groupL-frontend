@@ -150,7 +150,6 @@ class ModalAddEventComponent implements OnInit {
   delEmail(row: any) {
     const modalRef = this.modalService.open(ModalDelMailComponent, { backdrop: 'static', keyboard: false, centered: true });
     modalRef.componentInstance.mail = row;
-
   }
 
   addItem() {

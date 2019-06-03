@@ -23,6 +23,7 @@ import { MyEventsComponent } from './my-events/my-events';
 import { ModalAddItemComponent } from './modals/add-item';
 import { ModalEventItemsComponent } from './modals/event-items';
 import { TopEventsComponent } from './top-events/top-events';
+import { ModalEventGuestComponent } from './modals/event-guest';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TopEventsComponent } from './top-events/top-events';
     ModalDelMailComponent,
     ModalAddItemComponent,
     ModalEventItemsComponent,
+    ModalEventGuestComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,7 @@ import { TopEventsComponent } from './top-events/top-events';
       }
     })
   ],
-  entryComponents: [ModalAddMailComponent, ModalDelMailComponent, ModalAddItemComponent, ModalEventItemsComponent],
+  entryComponents: [ModalAddMailComponent, ModalDelMailComponent, ModalAddItemComponent, ModalEventItemsComponent, ModalEventGuestComponent],
   providers: [AuthService, DataService, LoginActivate],
   bootstrap: [AppComponent]
 })

@@ -7,6 +7,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalEventItemsComponent } from '../modals/event-items';
 import { modalChangeEvent } from '../stepper/add-event';
 import { TranslateService } from '@ngx-translate/core';
+import { ModalEventGuestComponent } from '../modals/event-guest';
+import { modalChangeEventDelEmail } from '../modals/del-mail';
+import { modalChangeEventEmail } from '../modals/add-mail';
 
 @Component({
     selector: 'app-my-events',
@@ -33,6 +36,14 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
         this.dataSourceCreated = this.initDataSource(ELEMENT_DATA);
         this.dataSourceGuest = this.initDataSource(ELEMENT_DATA);
         this.dataSourceAssisted = this.initDataSource(ELEMENT_DATA);
+
+        modalChangeEventEmail.on('changeEvents', () => {
+            this.getEvents(this.profile.email);
+        });
+
+        modalChangeEventDelEmail.on('changeEvents', () => {
+            this.getEvents(this.profile.email);
+        });
 
         modalChangeEvent.on('changeEvents', () => {
             this.getEvents(this.profile.email);
@@ -83,7 +94,9 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     }
 
     checkGuest(row: any) {
-        console.log('lanzo el modal para revisar invitados' );
+        const modalRef = this.modalService.open(ModalEventGuestComponent, { backdrop: 'static', keyboard: false, centered: true });
+        modalRef.componentInstance.guests = row.guests;
+        modalRef.componentInstance.id = row.id;
     }
 
     getEvents(email: string) {

@@ -1,0 +1,27 @@
+<div class="modal-content modalBorder">
+    <div class="modal-header header">
+        <h4 class="modal-title" id="modal-basic-title">Editar invitados</h4>
+        <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
+    </div>
+    <div class="modal-body">
+        <table mat-table [dataSource]="dataSourceGuests" class="mat-elevation-z8">
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>{{'profile.fourthTabContent.personalData.email' | translate}}</th>
+                <td mat-cell *matCellDef="let row">{{row}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsGuests"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsGuests;"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedColumnsGuests"></tr>
+
+            <!-- botones -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef><button mat-icon-button color="primary" (click)="addMail()"><mat-icon>add</mat-icon></button></th>
+                <td mat-cell *matCellDef="let row"><button mat-icon-button color="warn" (click)="delEmail(row)"><mat-icon aria-label="Delete">delete</mat-icon></button></td>
+                <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+        </table>
+        <button mat-raised-button color="primary" (click)="modalService.dismissAll()">{{'profile.secondTabContent.acceptButton' | translate}}</button>
+    </div>
+</div>
