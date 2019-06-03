@@ -9,6 +9,9 @@ import { MailModel } from '../model/mail';
 import { ModalDelMailComponent , modalDelMailEvent } from '../modals/del-mail';
 import { DataService } from '../service/data.service';
 import { ModalAddItemComponent, modalAddItem } from '../modals/add-item';
+import { EventEmitter } from 'events';
+
+const modalChangeEvent = new EventEmitter();
 
 @Component({
   selector: 'app-add-event',
@@ -16,7 +19,7 @@ import { ModalAddItemComponent, modalAddItem } from '../modals/add-item';
   styleUrls: ['./add-event.css']
 })
 
-export class ModalAddEventComponent implements OnInit {
+class ModalAddEventComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -94,7 +97,10 @@ export class ModalAddEventComponent implements OnInit {
     };
     switch (this.firstFormGroup.value.type) {
       case '0': {
-        this.dataService.createParty(data).subscribe(resp => {console.log('llame al create party'); });
+        this.dataService.createParty(data).subscribe(resp => {
+          console.log('llame al create party');
+          modalChangeEvent.emit('changeEvents');
+        });
         break;
       }
       case '1': {
@@ -149,3 +155,4 @@ export class ModalAddEventComponent implements OnInit {
   }
 }
 
+export { ModalAddEventComponent, modalChangeEvent};

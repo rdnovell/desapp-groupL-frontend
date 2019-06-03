@@ -5,6 +5,7 @@ import { AuthService } from '../service/auth.service';
 import { DataService } from '../service/data.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalEventItemsComponent } from '../modals/event-items';
+import { modalChangeEvent } from '../stepper/add-event';
 
 @Component({
     selector: 'app-my-events',
@@ -17,8 +18,10 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     pageSize: number[] = [10, 20, 50];
     displayedColumns = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate', 'actions'];
     displayedColumnsGuest = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate', 'actions'];
+    displayedColumnsAssisted = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate'];
     dataSourceCreated: MatTableDataSource<EventModel>;
     dataSourceGuest: MatTableDataSource<EventModel>;
+    dataSourceAssisted: MatTableDataSource<EventModel>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -34,6 +37,16 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
         this.dataSourceGuest = new MatTableDataSource(ELEMENT_DATA);
         this.dataSourceGuest.paginator = this.paginator;
         this.dataSourceGuest.sort = this.sort;
+
+        this.dataSourceAssisted = new MatTableDataSource(ELEMENT_DATA);
+        this.dataSourceAssisted.paginator = this.paginator;
+        this.dataSourceAssisted.sort = this.sort;
+
+        modalChangeEvent.on('changeEvents', () => {
+            console.log('llamar a los actualizar eventos');
+            console.log(this.profile.email);
+            this.getEvents(this.profile.email);
+        });
     }
 
     ngOnInit() {
@@ -42,12 +55,7 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
         } else {
             this.authService.getProfile((err, profile) => {
                 this.profile = profile;
-                this.dataService.getOwnerEvents(this.profile.email).subscribe(resp => {
-                    this.dataSourceCreated.data = resp;
-                });
-                this.dataService.getGuestedEvents(this.profile.email).subscribe(resp => {
-                    this.dataSourceGuest.data = resp;
-                });
+                this.getEvents(this.profile.email);
             });
         }
     }
@@ -70,9 +78,6 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
 
     delEvent(row: any) {
         console.log('hay que borrar el evento con id ' + row.id);
-        // esto no va
-        this.dataSourceCreated.data = this.dataSourceCreated.data.filter(e => e.id !== row.id);
-        // esto no va
         this.dataService.delEvent(row.id).subscribe(resp => {
             console.log('hay que actualizr mis evebntos owners ' );
             this.dataService.getOwnerEvents(this.profile.email).subscribe(data => {
@@ -91,5 +96,23 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
 
     checkGuest(row: any) {
         console.log('lanzo el modal para revisar invitados' );
+    }
+
+    getEvents(email: string) {
+        this.dataService.getOwnerEvents(email).subscribe(resp => {
+            this.dataSourceCreated.data = resp;
+        });
+        this.dataService.getGuestedEvents(email).subscribe(resp => {
+            this.dataSourceGuest.data = resp;
+        });
+        this.dataService.getAssistedEvents(email).subscribe(resp => {
+            this.dataSourceAssisted.data = resp;
+        });
+    }
+
+    assistToEvent(row: any) {
+        console.log('entre al asistir a un evento');
+        const data = {userEmail: this.profile.email, eventId: row.id};
+        this.dataService.assistToAnEvent(data).subscribe(resp => { this.getEvents(this.profile.email); });
     }
 }

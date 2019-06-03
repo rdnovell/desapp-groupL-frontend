@@ -36,8 +36,8 @@ export class DataService {
         return this.http.get<any>(this.apiURL + 'user/owner-events', {params});
     }
 
-    assistToAnEvent(userEventData: any) {
-        return this.http.put(this.apiURL + 'event/guest-confirmated', userEventData);
+    assistToAnEvent(data: {userEmail, eventId}) {
+        return this.http.put(this.apiURL + 'event/guest-confirmated', data);
     }
 
     crearItem(item: ItemModel) {
@@ -45,7 +45,16 @@ export class DataService {
     }
 
     delEvent(id: any) {
-        // arreglar
-        return this.http.delete(this.apiURL + id);
+        return this.http.delete(this.apiURL + 'event/party/' + id);
+    }
+
+    getAssistedEvents(email: string) {
+        let params = new HttpParams();
+        params = params.set('email', email);
+        return this.http.get<any>(this.apiURL + 'user/assisted-events', {params});
+    }
+
+    updateItemsToEvent(data: {eventId, itemsTitle}) {
+        return this.http.put(this.apiURL + 'event/party/items', data);
     }
 }
