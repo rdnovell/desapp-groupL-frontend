@@ -30,15 +30,11 @@ class ModalAddItemComponent implements OnInit {
     }
 
     handleSubmit() {
-        console.log(this.event);
-        console.log('entre al crear item');
-        console.log(this.registerForm.controls.title.value);
-        console.log(this.registerForm.controls.price.value);
         const item = {title: this.registerForm.controls.title.value, price: this.registerForm.controls.price.value};
         this.dataService.crearItem(item).subscribe(resp => {
-            modalAddItem.emit('addItem');
+            modalAddItem.emit('addItem', item);
             if (this.event) {
-                console.log('puede que venga de otro lado entonces tengo el id del evento ');
+                console.log('No hay qe entrar aca');
                 modalAddItemToEvent.emit('addItemToEvent', {id: this.event, item});
             }
         });

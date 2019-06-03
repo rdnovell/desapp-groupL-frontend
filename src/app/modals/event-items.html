@@ -1,6 +1,6 @@
 <div class="modal-content modalBorder">
     <div class="modal-header header">
-        <h4 class="modal-title" id="modal-basic-title">Verificar items</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'profile.secondTabContent.editItemsLabel' | translate}}</h4>
         <i class="material-icons pointer" (click)="modalService.dismissAll()">close</i>
     </div>
     <div class="modal-body">
@@ -49,6 +49,6 @@
                 <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
         </table>
-        <button mat-raised-button color="primary" (click)="updateItems()">Confirmar</button>
+        <button mat-raised-button color="primary" (click)="updateItems()">{{'profile.secondTabContent.acceptButton' | translate}}</button>
     </div>
 </div>

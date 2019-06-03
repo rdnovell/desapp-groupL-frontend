@@ -6,6 +6,7 @@ import { DataService } from '../service/data.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalEventItemsComponent } from '../modals/event-items';
 import { modalChangeEvent } from '../stepper/add-event';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-my-events',
@@ -17,7 +18,6 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     profile: any;
     pageSize: number[] = [10, 20, 50];
     displayedColumns = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate', 'actions'];
-    displayedColumnsGuest = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate', 'actions'];
     displayedColumnsAssisted = ['type', 'title', 'items', 'invitados', 'date', 'expirationDate'];
     dataSourceCreated: MatTableDataSource<EventModel>;
     dataSourceGuest: MatTableDataSource<EventModel>;
@@ -26,25 +26,15 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private authService: AuthService, private dataService: DataService, private modalService: NgbModal) {
+    constructor(private authService: AuthService, private dataService: DataService, private modalService: NgbModal, private translateService: TranslateService) {
 
         const ELEMENT_DATA: EventModel[] = [];
 
-        this.dataSourceCreated = new MatTableDataSource(ELEMENT_DATA);
-        this.dataSourceCreated.paginator = this.paginator;
-        this.dataSourceCreated.sort = this.sort;
-
-        this.dataSourceGuest = new MatTableDataSource(ELEMENT_DATA);
-        this.dataSourceGuest.paginator = this.paginator;
-        this.dataSourceGuest.sort = this.sort;
-
-        this.dataSourceAssisted = new MatTableDataSource(ELEMENT_DATA);
-        this.dataSourceAssisted.paginator = this.paginator;
-        this.dataSourceAssisted.sort = this.sort;
+        this.dataSourceCreated = this.initDataSource(ELEMENT_DATA);
+        this.dataSourceGuest = this.initDataSource(ELEMENT_DATA);
+        this.dataSourceAssisted = this.initDataSource(ELEMENT_DATA);
 
         modalChangeEvent.on('changeEvents', () => {
-            console.log('llamar a los actualizar eventos');
-            console.log(this.profile.email);
             this.getEvents(this.profile.email);
         });
     }
@@ -61,7 +51,9 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.paginator._intl.itemsPerPageLabel = 'Cantidad de eventos por página:';
+        this.translateService.get('profile.secondTabContent.paginatorLabel').subscribe(resp => {
+            this.paginator._intl.itemsPerPageLabel = resp;
+        });
     }
 
     applyFilterGuest(filterValue: string) {
@@ -77,18 +69,14 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     }
 
     delEvent(row: any) {
-        console.log('hay que borrar el evento con id ' + row.id);
         this.dataService.delEvent(row.id).subscribe(resp => {
-            console.log('hay que actualizr mis evebntos owners ' );
             this.dataService.getOwnerEvents(this.profile.email).subscribe(data => {
-                console.log('act la lista' );
                 this.dataSourceCreated.data = data;
             });
         });
     }
 
     checkItems(row: any) {
-        console.log('lanzo el modal para revisar items' );
         const modalRef = this.modalService.open(ModalEventItemsComponent, { backdrop: 'static', keyboard: false, centered: true });
         modalRef.componentInstance.items = row.items;
         modalRef.componentInstance.id = row.id;
@@ -111,8 +99,14 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     }
 
     assistToEvent(row: any) {
-        console.log('entre al asistir a un evento');
         const data = {userEmail: this.profile.email, eventId: row.id};
         this.dataService.assistToAnEvent(data).subscribe(resp => { this.getEvents(this.profile.email); });
+    }
+
+    private initDataSource(ELEMENT_DATA) {
+        const dataSource = new MatTableDataSource<EventModel>(ELEMENT_DATA);
+        dataSource.paginator = this.paginator;
+        dataSource.sort = this.sort;
+        return dataSource;
     }
 }

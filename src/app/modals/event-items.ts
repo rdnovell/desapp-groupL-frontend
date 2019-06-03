@@ -25,8 +25,6 @@ export class ModalEventItemsComponent implements OnInit {
     constructor(public modalService: NgbModal, private dataService: DataService) {
 
         modalAddItemToEvent.on('addItemToEvent', data => {
-            console.log('llamo al event emitter para el caso que se agrego un item para un evento ');
-            console.log(this.items);
             this.items.push(data.item);
             this.dataSourceItems.data = this.items;
             const eventItemData = {eventId: this.id, itemsTitle: this.items.map(i => i.title)};
@@ -39,9 +37,7 @@ export class ModalEventItemsComponent implements OnInit {
         console.log(this.items);
         this.dataService.getItems().subscribe(resp => {
             this.dataSourceItems.data = resp;
-            console.log('tengo que marcar los items correctos');
             this.dataSourceItems.data.forEach(row => {
-                console.log(row.title);
                 if (this.items.some(i => i.title === row.title)) { this.selection.select(row); }
             });
         });
@@ -77,9 +73,8 @@ export class ModalEventItemsComponent implements OnInit {
     }
 
     updateItems() {
-        console.log('Entre al update de los items');
-        console.log(this.dataSourceItems.data.filter(t => this.selection.isSelected(t)));
-        const eventItemData = {eventId: this.id, itemsTitle: this.dataSourceItems.data.filter(t => this.selection.isSelected(t)).map(i => i.title)};
+        const itemsTitle = this.dataSourceItems.data.filter(t => this.selection.isSelected(t)).map(i => i.title);
+        const eventItemData = {eventId: this.id, itemsTitle};
         this.dataService.updateItemsToEvent(eventItemData).subscribe(resp => {
             modalChangeEvent.emit('changeEvents');
         });

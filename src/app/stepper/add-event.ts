@@ -55,10 +55,14 @@ class ModalAddEventComponent implements OnInit {
       this.updateMails(this.mails);
     });
 
-    modalAddItem.on('addItem', () => {
-      console.log('llamo al event emitter del item ');
+    modalAddItem.on('addItem', item => {
+      const preItemsSelectes = this.dataSourceItems.data.filter(t => this.selection.isSelected(t));
+      preItemsSelectes.push(item);
       this.dataService.getItems().subscribe(resp => {
         this.dataSourceItems.data = resp;
+        this.dataSourceItems.data.forEach(row => {
+          if (preItemsSelectes.some(i => i.title === row.title)) { this.selection.select(row); }
+        });
       });
     });
   }
@@ -98,7 +102,6 @@ class ModalAddEventComponent implements OnInit {
     switch (this.firstFormGroup.value.type) {
       case '0': {
         this.dataService.createParty(data).subscribe(resp => {
-          console.log('llame al create party');
           modalChangeEvent.emit('changeEvents');
         });
         break;

@@ -1,7 +1,7 @@
 <div class="modalBorder">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Agregar item</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'profile.secondTabContent.addItemLabel' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="modalService.dismissAll()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -10,16 +10,16 @@
     <div class="modal-body">
         <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
             <mat-form-field class="container">
-                <input matInput placeholder="Titulo" formControlName="title" />
+                <input matInput placeholder="{{'profile.firstTabContent.stepTwo.tableColumnName' | translate}}" formControlName="title" />
                 <mat-error *ngIf="registerForm.controls.title.errors">{{getTitleErrorMessage()}}</mat-error>
             </mat-form-field>
             <mat-form-field class="container">
-                <input matInput placeholder="Precio" formControlName="price" />
+                <input matInput placeholder="{{'profile.firstTabContent.stepTwo.tableColumnCost' | translate}}" formControlName="price" />
                 <mat-error *ngIf="registerForm.controls.price.errors">{{getPriceErrorMessage()}}</mat-error>
             </mat-form-field>
             <div class="form-group">
                 <button mat-raised-button color="primary" class="siguiente"
-                        [disabled]="!registerForm.valid">Agregar</button>
+                        [disabled]="!registerForm.valid">{{'profile.secondTabContent.acceptButton' | translate}}</button>
             </div>
         </form>
     </div>

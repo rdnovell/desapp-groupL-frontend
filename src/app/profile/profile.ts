@@ -3,6 +3,7 @@ import { AuthService } from '../service/auth.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { EventModel } from '../model/event';
 import { DataService } from '../service/data.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private authService: AuthService, private dataService: DataService) {
+  constructor(private authService: AuthService, private dataService: DataService, private translateService: TranslateService) {
 
     const ELEMENT_DATA: EventModel[] = [];
 
@@ -46,7 +47,9 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.paginator._intl.itemsPerPageLabel = 'Cantidad de eventos por página:';
+    this.translateService.get('profile.secondTabContent.paginatorLabel').subscribe(resp => {
+      this.paginator._intl.itemsPerPageLabel = resp;
+    });
   }
 
   applyFilterCreated(filterValue: string) {
