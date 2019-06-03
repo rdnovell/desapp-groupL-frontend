@@ -30,7 +30,6 @@ class ModalAddItemComponent implements OnInit {
     }
 
     handleSubmit() {
-        console.log('puede que venga de otro lado entonces tengo el id del evento ');
         console.log(this.event);
         console.log('entre al crear item');
         console.log(this.registerForm.controls.title.value);
@@ -38,7 +37,10 @@ class ModalAddItemComponent implements OnInit {
         const item = {title: this.registerForm.controls.title.value, price: this.registerForm.controls.price.value};
         this.dataService.crearItem(item).subscribe(resp => {
             modalAddItem.emit('addItem');
-            modalAddItemToEvent.emit('addItemToEvent', {id: this.event, item});
+            if (this.event) {
+                console.log('puede que venga de otro lado entonces tengo el id del evento ');
+                modalAddItemToEvent.emit('addItemToEvent', {id: this.event, item});
+            }
         });
         this.modalService.dismissAll('close');
     }
