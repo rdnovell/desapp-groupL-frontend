@@ -24,7 +24,13 @@ class ModalAddEventComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  mails: MailModel[] = [{position: 1, email: 'juan@gmail.com'}];
+  mails: MailModel[] = [
+    {position: 1, email: 'waitorubihno@gmail.com'},
+    {position: 2, email: 'angel.amilcar.novelli@gmail.com'},
+    {position: 3, email: 'dmleguizamon@gmail.com'},
+    {position: 4, email: 'rubendario.novelli@gmail.com'},
+    {position: 5, email: 'marinoalanunq@gmail.com'}
+  ];
   mailCounter = 1;
   displayedColumnsItems: string[] = ['select', 'title', 'price', 'actions'];
   displayedColumnsMails: string[] = ['position', 'email', 'actions'];
