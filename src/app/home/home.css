@@ -6,3 +6,7 @@
 .example-header-image {
     background-size: cover;
 }
+
+.mat-card-header{
+    justify-content: center;
+}
