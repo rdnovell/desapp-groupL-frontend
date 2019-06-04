@@ -28,7 +28,7 @@
             <br>
             <br>
             <div>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperNext>{{'profile.firstTabContent.nextButton' | translate}}</button>
             </div>
         </form>
     </mat-step>
@@ -82,8 +82,8 @@
                 </ng-container>
             </table>
             <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperPrevious>{{'profile.firstTabContent.backButton' | translate}}</button>
+                <button mat-button matStepperNext>{{'profile.firstTabContent.nextButton' | translate}}</button>
             </div>
         </form>
     </mat-step>
@@ -117,8 +117,8 @@
                 </ng-container>
             </table>
             <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext (click)="sendForm()">Next</button>
+                <button mat-button matStepperPrevious>{{'profile.firstTabContent.backButton' | translate}}</button>
+                <button mat-button matStepperNext (click)="sendForm()">{{'profile.firstTabContent.nextButton' | translate}}</button>
             </div>
         </form>
     </mat-step>
@@ -126,8 +126,8 @@
         <ng-template matStepLabel>{{ 'profile.firstTabContent.stepFour.title' | translate }}</ng-template>
         <h4 translate>profile.firstTabContent.stepFour.label</h4>
         <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button matStepperPrevious>{{'profile.firstTabContent.backButton' | translate}}</button>
+            <button mat-button (click)="stepper.reset()">{{'profile.firstTabContent.resetButton' | translate}}</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>
