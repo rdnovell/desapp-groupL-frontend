@@ -1,4 +1,5 @@
 {
+	"profile.closeButton": "Cerrar",
 	"profile.fifthTabContent.createLoan": "Solicitar prestamo",
 	"profile.fifthTabContent.fifthTabTitle": "Servicios financieros",
 	"profile.fifthTabContent.myLoans": "Mis prestamos",
@@ -36,6 +37,9 @@
 	"profile.fourthTabContent.personalData.lastName": "Apellido",
 	"profile.fourthTabContent.personalData.name": "Nombre",
 	"profile.fourthTabContent.personalData.title": "Datos personales",
+	"profile.loginButton": "Ingresar",
+	"profile.logoutButton": "Salir",
+	"profile.profileButton": "Perfil",
 	"profile.secondTabContent.acceptButton": "Aceptar",
 	"profile.secondTabContent.addItemLabel": "Agregar elemento",
 	"profile.secondTabContent.assistButton": "Asistir",

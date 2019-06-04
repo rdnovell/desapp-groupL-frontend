@@ -36,18 +36,18 @@
     <mat-sidenav-container fxFlexFill>
         <mat-sidenav #sidenav>
             <mat-nav-list>
-                <a (click)="sidenav.toggle()" href="" mat-list-item>Cerrar</a>
+                <a (click)="sidenav.toggle()" href="" mat-list-item>{{'profile.closeButton' | translate}}</a>
                 <a mat-list-item *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
                     <mat-icon class="icon">input</mat-icon>
-                    <span class="label">Login</span>
+                    <span class="label">{{'profile.loginButton' | translate}}</span>
                 </a>
                 <a mat-list-item *ngIf="auth.isAuthenticated()" routerLink="/profile">
                     <mat-icon class="icon">home</mat-icon>
-                    <span class="label">Profile</span>
+                    <span class="label">{{'profile.profileButton' | translate}}</span>
                 </a>
                 <a  mat-list-item *ngIf="auth.isAuthenticated()" (click)="auth.logout()">
                     <mat-icon class="icon">input</mat-icon>
-                    <span class="label">LogOut</span>
+                    <span class="label">{{'profile.logoutButton' | translate}}</span>
                 </a>
             </mat-nav-list>
         </mat-sidenav>

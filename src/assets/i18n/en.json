@@ -1,4 +1,5 @@
 {
+	"profile.closeButton": "Close",
 	"profile.fifthTabContent.createLoan": "Apply for loan",
 	"profile.fifthTabContent.fifthTabTitle": "Financial services",
 	"profile.fifthTabContent.myLoans": "My loans",
@@ -36,6 +37,9 @@
 	"profile.fourthTabContent.personalData.lastName": "Last name",
 	"profile.fourthTabContent.personalData.name": "Name",
 	"profile.fourthTabContent.personalData.title": "Personal data",
+	"profile.loginButton": "Login",
+	"profile.logoutButton": "Logout",
+	"profile.profileButton": "Profile",
 	"profile.secondTabContent.acceptButton": "Accept",
 	"profile.secondTabContent.addItemLabel": "Add item",
 	"profile.secondTabContent.assistButton": "Assist",
