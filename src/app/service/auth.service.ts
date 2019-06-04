@@ -20,7 +20,7 @@ export class AuthService {
     });
 
     // private apiURL = 'http://localhost:8080/api/';
-    private apiURL = 'https://desapp-groupl-backend-testing.herokuapp.com/api/';
+    private apiURL = 'https://desapp-groupl-backend.herokuapp.com/api/';
 
     constructor(public router: Router, private http: HttpClient, private tokenStorage: TokenStorageService) {
         this.expiresAt = 0;
