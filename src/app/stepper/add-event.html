@@ -65,8 +65,8 @@
 
                 <ng-container matColumnDef="price">
                     <th mat-header-cell *matHeaderCellDef>{{'profile.firstTabContent.stepTwo.tableColumnCost' | translate}}</th>
-                    <td mat-cell *matCellDef="let element"> {{element.price | currency}} </td>
-                    <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.price | localCurrency}} </td>
+                    <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | localCurrency}} </td>
                    </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsItems"></tr>
