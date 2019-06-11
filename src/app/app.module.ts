@@ -24,6 +24,7 @@ import { ModalAddItemComponent } from './modals/add-item';
 import { ModalEventItemsComponent } from './modals/event-items';
 import { TopEventsComponent } from './top-events/top-events';
 import { ModalEventGuestComponent } from './modals/event-guest';
+import { LocalizedDatePipe } from './date-pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ModalEventGuestComponent } from './modals/event-guest';
     ModalAddItemComponent,
     ModalEventItemsComponent,
     ModalEventGuestComponent,
+    LocalizedDatePipe,
   ],
   imports: [
     BrowserModule,
