@@ -7,7 +7,7 @@ import {ItemModel} from '../model/item';
 export class DataService {
 
     // private apiURL = 'http://localhost:8080/api/';
-    //private apiURL = 'https://desapp-groupl-backend-testing.herokuapp.com/api/';
+    // private apiURL = 'https://desapp-groupl-backend-testing.herokuapp.com/api/';
     private apiURL = 'https://desapp-groupl-backend.herokuapp.com/api/';
 
     constructor(private http: HttpClient, private authService: AuthService) {}
@@ -64,5 +64,11 @@ export class DataService {
     }
     getTopEvents() {
         return this.http.get<any>(this.apiURL + 'event/top-events');
+    }
+
+    getAvailableLoan(email: string) {
+        let params = new HttpParams();
+        params = params.set('email', email);
+        return this.http.get<any>(this.apiURL + 'loan/valid', {params});
     }
 }

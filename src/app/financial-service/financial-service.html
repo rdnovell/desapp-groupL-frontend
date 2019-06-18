@@ -1,0 +1,80 @@
+<mat-tab-group>
+    <mat-tab label="{{'profile.fifthTabContent.createLoan' | translate}}">
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step>
+                <h4>Préstamos online</h4>
+                <br><br>
+                Solicita un préstamo online al instante, de manera fácil y rápida.
+                <br><br>
+                Estamos verificando tu situacion crediticia.
+                <br><br>
+                Tu situacion es {{creditAvailable ? 'Aprobado' : 'Rechazado'}} <i class="material-icons" style="color: green">done_outline</i>
+                <div>
+                    <button mat-button matStepperPrevious>{{'profile.firstTabContent.backButton' | translate}}</button>
+                    <ng-template [ngIf]="creditAvailable" [ngIfElse]="noCredit">
+                        <button mat-button matStepperNext (click)="send()">{{'profile.firstTabContent.nextButton' | translate}}</button>
+                    </ng-template>
+                    <ng-template #noCredit>
+                        <button mat-button (click)="stepper.reset()">{{'profile.firstTabContent.resetButton' | translate}}</button>
+                    </ng-template>
+                </div>
+            </mat-step>
+
+            <mat-step>
+                Aqui puedes ver los datos de tu prestamo.
+
+
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Monto</mat-card-title>
+                     </mat-card-header>
+                    <mat-card-content>
+                        <p style="text-align: right">
+                            $2000
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Cuotas</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p style="text-align: right">
+                            6
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title> Costo mensual</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p style="text-align: right">
+                            $200
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+
+                <div>
+                    <button mat-button (click)="stepper.reset()">{{'profile.firstTabContent.resetButton' | translate}}</button>
+                    <button mat-button matStepperNext (click)="send()">{{'profile.firstTabContent.nextButton' | translate}}</button>
+                </div>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>{{ 'profile.firstTabContent.stepFour.title' | translate }}</ng-template>
+                <h4>Tu prestamo ha sido creado</h4>
+                <div>
+                    <button mat-button matStepperPrevious>{{'profile.firstTabContent.backButton' | translate}}</button>
+                    <button mat-button (click)="stepper.reset()">{{'profile.firstTabContent.resetButton' | translate}}</button>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </mat-tab>
+    <mat-tab label="{{'profile.fifthTabContent.myLoans' | translate}}"></mat-tab>
+</mat-tab-group>
