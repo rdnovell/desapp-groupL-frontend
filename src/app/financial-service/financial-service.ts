@@ -13,6 +13,7 @@ export class FinancialServiceComponent implements OnInit {
     profile: any;
 
     constructor( private authService: AuthService, private dataService: DataService) { }
+
     send() {
 
     }
