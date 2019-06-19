@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { AuthService } from '../service/auth.service';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-import {EventModel} from '../model/event';
-
 
 @Component({
     selector: 'app-financial-service',
@@ -14,7 +12,7 @@ export class FinancialServiceComponent implements OnInit {
     isLinear = false;
     creditAvailable = false;
     profile: any;
-    displayedColumns = ['date'];
+    displayedColumns = ['id', 'creditSituation', 'date', 'email', 'loanAmount', 'loanTerm', 'loanTermsPayed', 'monthlyPayback'];
     dataSource: MatTableDataSource<any>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -23,7 +21,7 @@ export class FinancialServiceComponent implements OnInit {
 
     send() {
         console.log('send ' + this.profile.email);
-        this.dataService.createLoan(this.profile.email).subscribe(resp => console.log(resp));
+        this.dataService.createLoan(this.profile.email).subscribe(() => this.updateLoans(this.profile.email));
     }
 
     ngOnInit() {
@@ -37,14 +35,17 @@ export class FinancialServiceComponent implements OnInit {
 
                 this.dataSource = new MatTableDataSource<any>([]);
                 this.dataSource.paginator = this.paginator;
-                this.dataService.getUserLoans(this.profile.email).subscribe( resp => {
-                    console.log('me llegaron estos prestamos ' + resp);
-                    this.dataSource.data = resp;
-                });
+                this.updateLoans(this.profile.email);
                 this.dataService.getAvailableLoan(this.profile.email).subscribe( resp => this.creditAvailable = resp);
 
             });
         }
+    }
 
+    updateLoans(email) {
+        this.dataService.getUserLoans(email).subscribe( resp => {
+            console.log('me llegaron estos prestamos ' + resp);
+            this.dataSource.data = resp;
+        });
     }
 }

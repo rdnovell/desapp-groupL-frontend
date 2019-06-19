@@ -81,12 +81,45 @@
     </mat-tab>
     <mat-tab label="{{'profile.fifthTabContent.myLoans' | translate}}">
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="creditSituation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> credit_situation </th>
+                <td mat-cell *matCellDef="let element"> {{element.creditSituation}} </td>
+            </ng-container>
 
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'profile.secondTabContent.tableColumnDate' | translate}} </th>
-                <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.date | localizedDate}} </td>
             </ng-container>
 
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="loanAmount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> loan_amount </th>
+                <td mat-cell *matCellDef="let element"> {{element.loanAmount | localCurrency}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="loanTerm">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> loan_term </th>
+                <td mat-cell *matCellDef="let element"> {{element.loanTerm}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="loanTermsPayed">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> loan_terms_payed </th>
+                <td mat-cell *matCellDef="let element"> {{element.loanTermsPayed}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="monthlyPayback">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> monthly_payback </th>
+                <td mat-cell *matCellDef="let element"> {{element.monthlyPayback | localCurrency}} </td>
+            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
