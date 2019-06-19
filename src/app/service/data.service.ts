@@ -70,4 +70,17 @@ export class DataService {
         params = params.set('email', email);
         return this.http.get<any>(this.apiURL + 'loan/valid', {params});
     }
+
+    createLoan(email: string) {
+        console.log('en el create loan service ' + email);
+        let params = new HttpParams();
+        params = params.set('email', email);
+        return this.http.post<any>(this.apiURL + 'loan/create', {}, {params});
+    }
+
+    getUserLoans(email: string) {
+        let params = new HttpParams();
+        params = params.set('email', email);
+        return this.http.get<any>(this.apiURL + 'loan/loans', {params});
+    }
 }
