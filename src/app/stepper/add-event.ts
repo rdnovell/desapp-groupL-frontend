@@ -8,7 +8,7 @@ import { ModalAddMailComponent, modalAddMailEvent } from '../modals/add-mail';
 import { MailModel } from '../model/mail';
 import { ModalDelMailComponent , modalDelMailEvent } from '../modals/del-mail';
 import { DataService } from '../service/data.service';
-import { ModalAddItemComponent, modalAddItem } from '../modals/add-item';
+import { ModalAddItemComponent, modalAddItem } from '../modals/add-item/add-item';
 import { EventEmitter } from 'events';
 
 const modalChangeEvent = new EventEmitter();

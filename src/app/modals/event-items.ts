@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemModel} from '../model/item';
 import { MatTableDataSource } from '@angular/material';
-import { ModalAddItemComponent, modalAddItemToEvent } from './add-item';
+import { ModalAddItemComponent, modalAddItemToEvent } from './add-item/add-item';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DataService } from '../service/data.service';
 import { modalChangeEvent } from '../stepper/add-event';

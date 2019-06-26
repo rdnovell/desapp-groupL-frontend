@@ -11,11 +11,11 @@
         <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
             <mat-form-field class="container">
                 <input matInput placeholder="{{'profile.firstTabContent.stepTwo.tableColumnName' | translate}}" formControlName="title" />
-                <mat-error *ngIf="registerForm.controls.title.errors">{{getTitleErrorMessage()}}</mat-error>
+                <mat-error *ngIf="titleHasError()">Debe ingresar un título.</mat-error>
             </mat-form-field>
             <mat-form-field class="container">
-                <input matInput placeholder="{{'profile.firstTabContent.stepTwo.tableColumnCost' | translate}}" formControlName="price" />
-                <mat-error *ngIf="registerForm.controls.price.errors">{{getPriceErrorMessage()}}</mat-error>
+                <input matInput (keypress)="numbersOnly($event)" type="text" placeholder="{{'profile.firstTabContent.stepTwo.tableColumnCost' | translate}}" formControlName="price" />
+                <mat-error *ngIf="priceHasError()">Debe ingresar un precio.</mat-error>
             </mat-form-field>
             <div class="form-group">
                 <button mat-raised-button color="primary" class="siguiente"

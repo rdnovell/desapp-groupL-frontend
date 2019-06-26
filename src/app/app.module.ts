@@ -20,7 +20,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from './service/data.service';
 import { MyEventsComponent } from './my-events/my-events';
-import { ModalAddItemComponent } from './modals/add-item';
+import { ModalAddItemComponent } from './modals/add-item/add-item';
 import { ModalEventItemsComponent } from './modals/event-items';
 import { TopEventsComponent } from './top-events/top-events';
 import { ModalEventGuestComponent } from './modals/event-guest';

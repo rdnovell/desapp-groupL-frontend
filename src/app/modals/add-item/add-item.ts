@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventEmitter } from 'events';
-import { DataService } from '../service/data.service';
+import { DataService } from '../../service/data.service';
+import { formGroup, getValues, hasError } from '../../model/validationForm';
 
 const modalAddItem = new EventEmitter();
 const modalAddItemToEvent = new EventEmitter();
@@ -23,30 +24,37 @@ class ModalAddItemComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.registerForm = this.formBuilder.group({
-            title: ['', Validators.required],
-            price: ['', Validators.required]
-        });
+        this.registerForm = formGroup(this.formBuilder, 'title', 'price');
+    }
+
+    numbersOnly({ which, keyCode}): boolean {
+        const charCode = which || keyCode;
+        return !(charCode > 31 && (charCode < 48 || charCode > 57));
     }
 
     handleSubmit() {
-        const item = {title: this.registerForm.controls.title.value, price: this.registerForm.controls.price.value};
+        const item: any = getValues(this.registerForm);
         this.dataService.crearItem(item).subscribe(resp => {
-            modalAddItem.emit('addItem', item);
-            if (this.event) {
-                console.log('No hay qe entrar aca');
+           modalAddItem.emit('addItem', item);
+           if (this.event) {
                 modalAddItemToEvent.emit('addItemToEvent', {id: this.event, item});
             }
         });
         this.modalService.dismissAll('close');
     }
 
-    getTitleErrorMessage() {
-        return this.registerForm.controls.title.errors.required ? 'Debe ingresar un titulo.' : 'El titulo ingresado es incorrecto.';
+    formHasError(field) {
+        return hasError(this.registerForm, field);
     }
-    getPriceErrorMessage() {
-        return this.registerForm.controls.price.errors.required ? 'Debe ingresar un precio.' : 'El precio ingresado es incorrecto.';
+
+    titleHasError() {
+        return this.formHasError('title');
     }
+
+    priceHasError() {
+        return this.formHasError('price');
+    }
+
 }
 
 export { ModalAddItemComponent, modalAddItem , modalAddItemToEvent};
