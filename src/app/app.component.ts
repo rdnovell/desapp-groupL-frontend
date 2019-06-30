@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { determine } from 'jstz';
+
+console.log(determine().name());
 
 @Component({
   selector: 'app-root',
