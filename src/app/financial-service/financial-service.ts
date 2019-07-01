@@ -36,14 +36,14 @@ export class FinancialServiceComponent implements OnInit {
                 this.dataSource = new MatTableDataSource<any>([]);
                 this.dataSource.paginator = this.paginator;
                 this.updateLoans(this.profile.email);
-                this.dataService.getAvailableLoan(this.profile.email).subscribe( resp => this.creditAvailable = resp);
+                this.dataService.getAvailableLoan(this.profile.email).subscribe((resp: any) => this.creditAvailable = resp);
 
             });
         }
     }
 
     updateLoans(email) {
-        this.dataService.getUserLoans(email).subscribe( resp => {
+        this.dataService.getUserLoans(email).subscribe((resp: any) => {
             console.log('me llegaron estos prestamos ' + resp);
             this.dataSource.data = resp;
         });

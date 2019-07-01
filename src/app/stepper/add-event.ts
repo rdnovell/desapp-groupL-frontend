@@ -64,7 +64,7 @@ class ModalAddEventComponent implements OnInit {
     modalAddItem.on('addItem', item => {
       const preItemsSelectes = this.dataSourceItems.data.filter(t => this.selection.isSelected(t));
       preItemsSelectes.push(item);
-      this.dataService.getItems().subscribe(resp => {
+      this.dataService.getItems().subscribe((resp: any) => {
         this.dataSourceItems.data = resp;
         this.dataSourceItems.data.forEach(row => {
           if (preItemsSelectes.some(i => i.title === row.title)) { this.selection.select(row); }
@@ -86,7 +86,7 @@ class ModalAddEventComponent implements OnInit {
       thirdCtrl: ['', Validators.required]
     });
 
-    this.dataService.getItems().subscribe(resp => {
+    this.dataService.getItems().subscribe((resp: any) => {
       this.dataSourceItems.data = resp;
     });
   }

@@ -35,7 +35,7 @@ export class ModalEventItemsComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.items);
-        this.dataService.getItems().subscribe(resp => {
+        this.dataService.getItems().subscribe((resp: any) => {
             this.dataSourceItems.data = resp;
             this.dataSourceItems.data.forEach(row => {
                 if (this.items.some(i => i.title === row.title)) { this.selection.select(row); }

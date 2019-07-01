@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
       this.authService.getProfile((err, profile) => {
         this.profile = profile;
         this.dataService.validateUser(this.profile).subscribe(data => {
-          this.authService.getUserBalance(this.profile.email).subscribe(value => {
+          this.authService.getUserBalance(this.profile.email).subscribe((value: any) => {
             this.balance = value;
           });
         });

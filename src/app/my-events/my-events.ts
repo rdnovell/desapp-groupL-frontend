@@ -84,7 +84,7 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
 
     delEvent(row: any) {
         this.dataService.delEvent(row.id).subscribe(resp => {
-            this.dataService.getOwnerEvents(this.profile.email).subscribe(data => {
+            this.dataService.getOwnerEvents(this.profile.email).subscribe((data: any) => {
                 this.dataSourceCreated.data = data;
             });
         });
@@ -103,13 +103,13 @@ export class MyEventsComponent implements OnInit, AfterViewInit {
     }
 
     getEvents(email: string) {
-        this.dataService.getOwnerEvents(email).subscribe(resp => {
+        this.dataService.getOwnerEvents(email).subscribe((resp: any) => {
             this.dataSourceCreated.data = resp;
         });
-        this.dataService.getGuestedEvents(email).subscribe(resp => {
+        this.dataService.getGuestedEvents(email).subscribe((resp: any) => {
             this.dataSourceGuest.data = resp;
         });
-        this.dataService.getAssistedEvents(email).subscribe(resp => {
+        this.dataService.getAssistedEvents(email).subscribe((resp: any) => {
             this.dataSourceAssisted.data = resp;
         });
     }

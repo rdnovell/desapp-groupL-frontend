@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from './token.service';
 import * as auth0 from 'auth0-js';
+import { HttpService } from './http.service';
 
 @Injectable()
-export class AuthService {
+export class AuthService extends HttpService {
 
     private expiresAt: number;
     public userProfile: any;
@@ -15,14 +16,15 @@ export class AuthService {
         domain: 'dev-4av88gbm.auth0.com',
         responseType: 'token id_token',
         redirectUri: 'https://eventeando-grupol.herokuapp.com/',
-        // redirectUri: 'http://localhost:4200/',
+        //redirectUri: 'http://localhost:4200/',
         scope: 'openid profile email'
     });
 
-    // private apiURL = 'http://localhost:8080/api/';
+    //private apiURL = 'http://localhost:8080/api/';
     private apiURL = 'https://desapp-groupl-backend.herokuapp.com/api/';
 
-    constructor(public router: Router, private http: HttpClient, private tokenStorage: TokenStorageService) {
+    constructor(public router: Router, protected http: HttpClient, private tokenStorage: TokenStorageService) {
+        super(http);
         this.expiresAt = 0;
         this.handleAuthentication();
     }
@@ -69,7 +71,8 @@ export class AuthService {
     }
 
     getUserBalance(email: string) {
-            return this.http.get<number>(this.apiURL + 'user/balance/' + email);
+        return this.get('user/balance/' + email);
+        //return this.http.get<number>(this.apiURL + 'user/balance/' + email);
     }
 
 }

@@ -29,7 +29,7 @@ export class TopEventsComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.dataService.getTopEvents().subscribe(resp => {
+        this.dataService.getTopEvents().subscribe((resp: any) => {
             this.dataSourceTop.data = resp;
         });
     }
