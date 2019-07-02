@@ -2,6 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { DataService } from '../service/data.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-profile',
@@ -17,10 +19,9 @@ export class ProfileComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
 
   dateCodes: any[] = [
-    {value: '0', viewValue: 'remove'},
-    {value: '1', viewValue: '201906'},
-    {value: '2', viewValue: '201905'},
-    {value: '3', viewValue: '201904'}
+    {value: '0', viewValue: '201906'},
+    {value: '1', viewValue: '201905'},
+    {value: '2', viewValue: '201904'}
   ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -62,9 +63,14 @@ export class ProfileComponent implements OnInit {
   }
 
   applyFilter2(value: string) {
-    console.log('me llego ' + value);
     this.dataService.getUserFinantialData(this.profile.email).subscribe((resp: any) => {
       this.dataSource.data = resp.filter( e => e.dateCode === value);
     });
+  }
+
+  savePDF() {
+    const doc: any = new jsPDF();
+    doc.autoTable({html: '#summaryTable'});
+    doc.save('summary.pdf');
   }
 }

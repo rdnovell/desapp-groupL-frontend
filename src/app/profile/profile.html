@@ -55,7 +55,10 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+                <button mat-button (click)="savePDF()">Save PDF</button>
+
+                <table id="summaryTable" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
                     <ng-container matColumnDef="type">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'profile.secondTabContent.tableColumnType' | translate}} </th>
                         <td mat-cell *matCellDef="let element"> {{element.type}} </td>
