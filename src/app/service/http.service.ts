@@ -37,6 +37,11 @@ export class HttpService {
     return this.http.get(URL + endpoint, options);
   }
 
+  postWithParams(endpoint, ...parameters) {
+    const options = Object.assign(getHttpParams(parameters), getHttpOptions());
+    return this.http.post(URL + endpoint, options);
+  }
+
   post(endpoint, body) {
     return this.http.post(URL + endpoint, body, getHttpOptions());
   }

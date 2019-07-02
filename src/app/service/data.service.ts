@@ -72,16 +72,10 @@ export class DataService extends HttpService {
     }
 
     createLoan(email: string) {
-        console.log('en el create loan service ' + email);
-        let params = new HttpParams();
-        params = params.set('email', email);
-        return this.http.post<any>(this.apiURL + 'loan/create', {}, { params });
+        return this.postWithParams('loan/create', { field: 'email', value: email });
     }
 
     getUserLoans(email: string) {
         return this.getWithParams('loan/loans', { field: 'email', value: email });
-        // let params = new HttpParams();
-        // params = params.set('email', email);
-        // return this.http.get<any>(this.apiURL + 'loan/loans', { params });
     }
 }

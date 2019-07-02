@@ -31,8 +31,6 @@ export class FinancialServiceComponent implements OnInit {
         } else {
             this.authService.getProfile((err, profile) => {
                 this.profile = profile;
-                console.log(this.profile.email);
-
                 this.dataSource = new MatTableDataSource<any>([]);
                 this.dataSource.paginator = this.paginator;
                 this.updateLoans(this.profile.email);
@@ -44,7 +42,6 @@ export class FinancialServiceComponent implements OnInit {
 
     updateLoans(email) {
         this.dataService.getUserLoans(email).subscribe((resp: any) => {
-            console.log('me llegaron estos prestamos ' + resp);
             this.dataSource.data = resp;
         });
     }
