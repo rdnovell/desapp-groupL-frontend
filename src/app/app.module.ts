@@ -25,8 +25,11 @@ import { ModalEventItemsComponent } from './modals/event-items';
 import { TopEventsComponent } from './top-events/top-events';
 import { ModalEventGuestComponent } from './modals/event-guest';
 import { LocalizedDatePipe } from './date-pipe';
+import { LocalizedDateTimePipe } from './date-time-pipe';
 import { LocalizedCurrencyPipe } from './currency-pipe';
 import { FinancialServiceComponent } from './financial-service/financial-service';
+import { ConfirmedGuestsComponent } from './confirmed-guests/confirmed-guests';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { FinancialServiceComponent } from './financial-service/financial-service
     NavComponent,
     HomeComponent,
     ProfileComponent,
+    ConfirmedGuestsComponent,
     MyEventsComponent,
     TopEventsComponent,
     ModalAddEventComponent,
@@ -45,6 +49,7 @@ import { FinancialServiceComponent } from './financial-service/financial-service
     FinancialServiceComponent,
     LocalizedDatePipe,
     LocalizedCurrencyPipe,
+    LocalizedDateTimePipe
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,7 @@ import { FinancialServiceComponent } from './financial-service/financial-service
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    InfiniteScrollModule,
     NgbModule,
     TranslateModule.forRoot({
       loader: {

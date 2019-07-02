@@ -15,9 +15,7 @@ const getHttpOptions = () => ({
 const getHttpParams = (...parameters) => {
   return {
     params: flatten(parameters).reduce((httpParams, parameter) => {
-      console.log(parameter);
       const { field, value } = parameter;
-      console.log(field, value);
       return httpParams.set(field, value);
     }, new HttpParams())
   };

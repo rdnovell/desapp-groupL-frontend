@@ -1,0 +1,28 @@
+<div class="row title">
+    <div class="col center">
+        <span translate>confirmedGuests.eventTitle</span>
+    </div>
+    <div class="col center">
+        <span translate>confirmedGuests.user</span>
+    </div>
+    <div class="col center">
+        <span translate>confirmedGuests.date</span>
+    </div>
+</div>
+
+<div class="search-results" infiniteScroll [scrollWindow]="false" [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="2" (scrolled)="onScroll()">
+    <div *ngFor="let event of events">
+        <div class="row eventRow">
+            <div class="col center">
+                <p>{{event.eventName}}</p>
+            </div>
+            <div class="col center">
+                <p>{{event.email}}</p>
+            </div>
+            <div class="col center">
+                <p>{{event.date | localizedDateTime }}</p>
+            </div>
+        </div>
+    </div>
+</div>

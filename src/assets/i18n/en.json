@@ -72,5 +72,9 @@
 	"profile.secondTabContent.tableColumnTitle": "Title",
 	"profile.secondTabContent.tableColumnType": "Type",
 	"profile.secondTabContent.tableSearchLabel": "Search",
-	"profile.thirdTabContent.thirdTabTitle": "Top events"
+	"profile.thirdTabContent.thirdTabTitle": "Top events",
+	"profile.confirmations": "Confirmed Guests",
+	"confirmedGuests.eventTitle": "Event name",
+	"confirmedGuests.user": "User",
+	"confirmedGuests.date": "Confirmation date"
 }

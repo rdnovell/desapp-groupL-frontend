@@ -72,7 +72,6 @@ export class AuthService extends HttpService {
 
     getUserBalance(email: string) {
         return this.get('user/balance/' + email);
-        //return this.http.get<number>(this.apiURL + 'user/balance/' + email);
     }
 
 }
