@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   profile: any;
   balance: number;
   pageSize: number[] = [10, 20, 50];
-  displayedColumns = ['type', 'amount', 'date'];
+  displayedColumns = ['type', 'amount', 'date', 'balance'];
   dataSource: MatTableDataSource<any>;
 
   dateCodes: any[] = [
