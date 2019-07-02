@@ -63,7 +63,8 @@ export class ProfileComponent implements OnInit {
 
   applyFilter2(value: string) {
     console.log('me llego ' + value);
-    this.updateData(this.profile.email);
-    this.dataSource.data = this.dataSource.data.filter( e => e.dateCode === value);
+    this.dataService.getUserFinantialData(this.profile.email).subscribe((resp: any) => {
+      this.dataSource.data = resp.filter( e => e.dateCode === value);
+    });
   }
 }
