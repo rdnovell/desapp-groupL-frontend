@@ -28,20 +28,53 @@
             <mat-icon class="example-tab-icon">list</mat-icon>
             <span translate>profile.fourthTabContent.fourthTabTitle</span>
         </ng-template>
-        <div class="content">
-            <h2 translate>profile.fourthTabContent.personalData.title</h2>
-            <mat-list>
-                <mat-list-item>{{'profile.fourthTabContent.personalData.email' | translate}}: {{profile?.email}}</mat-list-item>
-                <mat-list-item>{{'profile.fourthTabContent.personalData.name' | translate}}: {{profile?.given_name}}</mat-list-item>
-                <mat-list-item>{{'profile.fourthTabContent.personalData.lastName' | translate}}: {{profile?.family_name}}</mat-list-item>
-            </mat-list>
-            <h2 translate>profile.fourthTabContent.personalAccount.title</h2>
-            <mat-list>
-                <mat-list-item>{{'profile.fourthTabContent.personalAccount.balanceInfo' | translate}}: ${{balance}}</mat-list-item>
-                <mat-list-item><button mat-raised-button onClick="window.open('https://www.mercadopago.com/mla/checkout/start?pref_id=63521540-0b68af45-7347-4ae8-a029-1db1f3601099')">{{'profile.fourthTabContent.personalAccount.addMoneyButton' | translate}}</button></mat-list-item>
-                <mat-list-item><button mat-raised-button>{{'profile.fourthTabContent.personalAccount.getMoneyButton' | translate}}</button></mat-list-item>
-            </mat-list>
-        </div>
+        <mat-tab-group>
+
+            <mat-tab label="{{'profile.fourthTabContent.personalData.title'| translate}}">
+                <mat-list>
+                    <mat-list-item>{{'profile.fourthTabContent.personalData.email' | translate}}: {{profile?.email}}</mat-list-item>
+                    <mat-list-item>{{'profile.fourthTabContent.personalData.name' | translate}}: {{profile?.given_name}}</mat-list-item>
+                    <mat-list-item>{{'profile.fourthTabContent.personalData.lastName' | translate}}: {{profile?.family_name}}</mat-list-item>
+                </mat-list>
+            </mat-tab>
+
+            <mat-tab label="{{'profile.fourthTabContent.personalAccount.title'| translate}}">
+                <mat-list>
+                    <mat-list-item>{{'profile.fourthTabContent.personalAccount.balanceInfo' | translate}}: ${{balance}}</mat-list-item>
+                    <mat-list-item><button mat-raised-button onClick="window.open('https://www.mercadopago.com/mla/checkout/start?pref_id=63521540-0b68af45-7347-4ae8-a029-1db1f3601099')">{{'profile.fourthTabContent.personalAccount.addMoneyButton' | translate}}</button>
+                        <button mat-raised-button>{{'profile.fourthTabContent.personalAccount.getMoneyButton' | translate}}</button></mat-list-item>
+                </mat-list>
+                <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'profile.secondTabContent.tableSearchLabel' | translate}}">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Summary</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let dateCode of dateCodes" [value]="dateCode.value" (onSelectionChange)="applyFilter2(dateCode.viewValue)">
+                            {{dateCode.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'profile.secondTabContent.tableColumnType' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'profile.fifthTabContent.value' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'profile.secondTabContent.tableColumnDate' | translate}} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.date | localizedDate}} </td>
+                    </ng-container>
+                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="pageSize"></mat-paginator>
+            </mat-tab>
+
+        </mat-tab-group>
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>

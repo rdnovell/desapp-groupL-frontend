@@ -78,4 +78,8 @@ export class DataService extends HttpService {
     getUserLoans(email: string) {
         return this.getWithParams('loan/loans', { field: 'email', value: email });
     }
+
+    getUserFinantialData(email: string) {
+        return this.getWithParams('user/owner-account-transaction', { field: 'email', value: email });
+    }
 }

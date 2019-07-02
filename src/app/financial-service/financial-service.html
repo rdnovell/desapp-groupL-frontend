@@ -9,7 +9,13 @@
                 <br><br>
                 {{'profile.fifthTabContent.text3' | translate}}
                 <br><br>
-                <h6>{{'profile.fifthTabContent.text4' | translate}} {{creditAvailable ? 'Approved' : 'Rejected'}}<i class="material-icons" style="color: green">done_outline</i></h6>
+                <ng-template [ngIf]="creditAvailable" [ngIfElse]="rejected">
+                    <h6>{{'profile.fifthTabContent.text4' | translate}} {{creditAvailable ? 'Approved' : 'Rejected'}}<i class="material-icons" style="color: green">done_outline</i></h6>
+                </ng-template>
+                <ng-template #rejected>
+                    <h6>{{'profile.fifthTabContent.text4' | translate}} {{creditAvailable ? 'Approved' : 'Rejected'}}<i class="material-icons" style="color: red">clear</i></h6>
+                </ng-template>
+
                 <br><br>
                 <div>
                     <button mat-button matStepperPrevious>{{'profile.firstTabContent.backButton' | translate}}</button>
