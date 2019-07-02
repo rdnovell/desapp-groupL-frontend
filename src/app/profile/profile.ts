@@ -62,11 +62,8 @@ export class ProfileComponent implements OnInit {
   }
 
   applyFilter2(value: string) {
-    console.log(value);
-    if (value === 'remove') {
-      this.updateData(this.profile.email);
-    } else {
-      this.dataSource.data = this.dataSource.data.filter( e => e.dateCode === value);
-    }
+    console.log('me llego ' + value);
+    this.updateData(this.profile.email);
+    this.dataSource.data = this.dataSource.data.filter( e => e.dateCode === value);
   }
 }
